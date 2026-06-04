@@ -194,7 +194,7 @@ export default function FlightSearchForm() {
   };
 
   return (
-    <div className="glass-card animate-slide-up rounded-2xl p-7 max-w-[1100px] -mt-15 mx-auto relative z-10 shadow-lg">
+    <div className="glass-card animate-slide-up rounded-2xl p-5 md:p-6 max-w-[1060px] mx-auto relative z-10 shadow-xl border border-white/60">
       <form onSubmit={handleSearchSubmit}>
         {/* Top Controls: Trip Type & Cabin Class */}
         <div className="flex flex-wrap justify-between items-center gap-4 mb-6">
@@ -231,7 +231,7 @@ export default function FlightSearchForm() {
                 <select
                   value={cabin}
                   onChange={(e) => setCabin(e.target.value)}
-                  className="appearance-none bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700/80 border-none rounded-md py-1.5 pl-3 pr-8 text-xs font-bold text-brand-primary dark:text-white cursor-pointer outline-none transition-all"
+                  className="appearance-none bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700/80 border-none rounded-md py-1 pl-2.5 pr-7 text-xs font-bold text-brand-primary dark:text-white cursor-pointer outline-none transition-all"
                 >
                   <option value="E">Economy</option>
                   <option value="B">Business</option>
@@ -252,7 +252,7 @@ export default function FlightSearchForm() {
                 <select
                   value={preferredAirline}
                   onChange={(e) => setPreferredAirline(e.target.value)}
-                  className="appearance-none bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700/80 border-none rounded-md py-1.5 pl-3 pr-8 text-xs font-bold text-brand-primary dark:text-white cursor-pointer outline-none transition-all"
+                  className="appearance-none bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700/80 border-none rounded-md py-1 pl-2.5 pr-7 text-xs font-bold text-brand-primary dark:text-white cursor-pointer outline-none transition-all"
                 >
                   <option value="">All Airlines</option>
                   <option value="AA">American Airlines (AA)</option>
@@ -308,7 +308,7 @@ export default function FlightSearchForm() {
               <button
                 type="button"
                 onClick={handleSwap}
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white border border-brand-border shadow-md flex items-center justify-center text-brand-accent z-10 cursor-pointer transition-all duration-350 hover:text-brand-orange hover:shadow-lg max-lg:top-1/2 max-lg:left-[90%] max-lg:rotate-90"
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white border border-brand-border shadow-md flex items-center justify-center text-brand-accent z-30 cursor-pointer transition-all duration-350 hover:text-brand-orange hover:shadow-lg max-lg:top-1/2 max-lg:left-[90%] max-lg:rotate-90"
               >
                 <ArrowLeftRight size={14} />
               </button>
@@ -330,8 +330,8 @@ export default function FlightSearchForm() {
             </div>
 
             {/* Depart Date */}
-            <div className="search-input-capsule flex flex-col justify-center py-3.5 px-4 bg-white rounded-lg border border-brand-border shadow-sm">
-              <span className="text-[11px] uppercase text-brand-text-muted font-semibold flex items-center gap-1 mb-1">
+            <div className="search-input-capsule flex flex-col justify-center py-2.5 px-4 bg-white rounded-lg border border-brand-border shadow-sm">
+              <span className="text-[11px] uppercase text-brand-text-muted font-semibold flex items-center gap-1 mb-0.5">
                 <Calendar size={12} className="text-brand-accent" />
                 Depart
               </span>
@@ -347,8 +347,8 @@ export default function FlightSearchForm() {
 
             {/* Return Date (Round trip only) */}
             {tripType === 'round' && (
-              <div className="search-input-capsule flex flex-col justify-center py-3.5 px-4 bg-white rounded-lg border border-brand-border shadow-sm">
-                <span className="text-[11px] uppercase text-brand-text-muted font-semibold flex items-center gap-1 mb-1">
+              <div className="search-input-capsule flex flex-col justify-center py-2.5 px-4 bg-white rounded-lg border border-brand-border shadow-sm">
+                <span className="text-[11px] uppercase text-brand-text-muted font-semibold flex items-center gap-1 mb-0.5">
                   <Calendar size={12} className="text-brand-orange" />
                   Return
                 </span>

@@ -96,14 +96,14 @@ export default function AirportAutocomplete({
     <div ref={wrapperRef} className="relative w-full">
       {/* Label and input container */}
       <div 
-        className={`flex flex-col py-3.5 px-4 bg-white cursor-text transition-all duration-350 shadow-sm border ${
+        className={`flex flex-col py-2.5 px-4 bg-white cursor-text transition-all duration-350 shadow-sm border ${
           inputBorderClass ? inputBorderClass : 'rounded-lg border-brand-border'
         } ${
           isOpen ? 'border-brand-accent shadow-[0_0_25px_rgba(37,99,235,0.25)] relative z-20' : ''
         }`}
         onClick={() => setIsOpen(true)}
       >
-        <span className="text-[11px] uppercase text-brand-text-muted font-semibold flex items-center gap-1 mb-1">
+        <span className="text-[11px] uppercase text-brand-text-muted font-semibold flex items-center gap-1 mb-0.5">
           {isOrigin ? <PlaneTakeoff size={12} className="text-brand-accent" /> : <PlaneLanding size={12} className="text-brand-orange" />}
           {label}
         </span>

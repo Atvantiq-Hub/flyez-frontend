@@ -89,11 +89,11 @@ export default function PassengerCountSelector({
       {/* Selector Button */}
       <div 
         onClick={() => setIsOpen(!isOpen)}
-        className={`search-input-capsule select-none cursor-pointer flex flex-col py-3.5 px-4 bg-white rounded-lg transition-all duration-350 shadow-sm border ${
+        className={`search-input-capsule select-none cursor-pointer flex flex-col py-2.5 px-4 bg-white rounded-lg transition-all duration-350 shadow-sm border ${
           isOpen ? 'border-brand-accent shadow-[0_0_25px_rgba(37,99,235,0.3)]' : 'border-brand-border'
         }`}
       >
-        <span className="text-[11px] uppercase text-brand-text-muted font-semibold flex items-center gap-1 mb-1">
+        <span className="text-[11px] uppercase text-brand-text-muted font-semibold flex items-center gap-1 mb-0.5">
           <Users size={12} className="text-brand-accent" />
           Travelers
         </span>
