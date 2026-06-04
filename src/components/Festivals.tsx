@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useRef } from 'react';
-import { CalendarRange, ChevronLeft, ChevronRight, Calendar, ArrowRight, Ticket, Check } from 'lucide-react';
+import React, { useState } from 'react';
+import { CalendarRange, Calendar, Ticket, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface Event {
@@ -19,8 +19,7 @@ interface Event {
 }
 
 export default function Festivals() {
-  const sliderRef = useRef<HTMLDivElement>(null);
-  const [copiedCode, setCopiedCode] = React.useState<string | null>(null);
+  const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
   const events: Event[] = [
     {
@@ -40,7 +39,7 @@ export default function Festivals() {
       name: "Black Friday",
       desc: "Massive fare cuts. Get secret consolidator coupon rates.",
       image: "https://flyez.ai/assets/img/black_friday.jpg",
-      color: "#2563eb", // Brand Accent
+      color: "#2563eb", // Brand Blue
       date: "Late November",
       url: "https://flyez.ai/cheap-flights-for-black-friday",
       tag: "VIP Access",
@@ -116,13 +115,6 @@ export default function Festivals() {
     }
   ];
 
-  const scroll = (direction: 'left' | 'right') => {
-    if (sliderRef.current) {
-      const scrollAmount = direction === 'left' ? -350 : 350;
-      sliderRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  };
-
   const copyCode = (e: React.MouseEvent, code: string) => {
     e.preventDefault();
     e.stopPropagation();
@@ -132,115 +124,86 @@ export default function Festivals() {
   };
 
   return (
-    <section className="py-24 bg-white dark:bg-brand-primary border-t border-b border-brand-border dark:border-gray-800 overflow-hidden relative">
-      {/* Subtle Dot Grid Background */}
-      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] bg-[radial-gradient(circle,var(--color-brand-primary)_1px,transparent_1.5px)] bg-[size:24px_24px] pointer-events-none" />
-
+    <section className="py-24 bg-brand-bg-light dark:bg-brand-primary border-t border-b border-brand-border dark:border-gray-800 relative">
       <div className="premium-container relative z-10">
         
-        {/* Title Block with Slider Controls */}
-        <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-6 mb-16">
-          <div>
-            <div className="flex items-center gap-2 text-brand-orange text-xs font-extrabold uppercase tracking-widest mb-3">
-              <CalendarRange size={16} /> Exclusive Seasonal Calendars
-            </div>
-            <h2 className="text-4xl font-display font-black text-brand-primary dark:text-white leading-tight">
-              Festivals & Special Events
-            </h2>
-            <p className="text-brand-text-muted dark:text-gray-400 text-base max-w-xl mt-2">
-              Lock in unpublished flight discounts and special consolidator fares during major holidays.
-            </p>
-          </div>
-          
-          {/* Slider controls */}
-          <div className="flex gap-3">
-            <button 
-              onClick={() => scroll('left')}
-              className="w-12 h-12 rounded-full border border-brand-border dark:border-gray-800 bg-white dark:bg-brand-primary-light flex items-center justify-center text-brand-primary dark:text-white cursor-pointer transition-all duration-300 hover:bg-brand-orange hover:border-brand-orange hover:text-white hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(255,92,0,0.25)] active:translate-y-0"
-              aria-label="Scroll left"
-            >
-              <ChevronLeft size={20} />
-            </button>
-            <button 
-              onClick={() => scroll('right')}
-              className="w-12 h-12 rounded-full border border-brand-border dark:border-gray-800 bg-white dark:bg-brand-primary-light flex items-center justify-center text-brand-primary dark:text-white cursor-pointer transition-all duration-300 hover:bg-brand-orange hover:border-brand-orange hover:text-white hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(255,92,0,0.25)] active:translate-y-0"
-              aria-label="Scroll right"
-            >
-              <ChevronRight size={20} />
-            </button>
-          </div>
+        {/* Unified Title Block */}
+        <div className="text-center mb-16">
+          <span className="text-xs font-extrabold text-brand-orange uppercase tracking-widest inline-block mb-2.5">
+            <span className="flex items-center gap-1.5 justify-center">
+              <CalendarRange size={14} /> Exclusive Seasonal Calendars
+            </span>
+          </span>
+          <h2 className="text-4xl font-display font-black text-brand-primary dark:text-white">
+            Festivals & Special Events
+          </h2>
+          <p className="text-brand-text-muted dark:text-gray-400 text-base max-w-xl mx-auto mt-2">
+            Lock in unpublished flight discounts and special consolidator fares during major holidays.
+          </p>
         </div>
 
-        {/* Scroll Slider container */}
-        <div 
-          ref={sliderRef}
-          className="flex gap-7 overflow-x-auto snap-x snap-mandatory py-4 px-1 -mx-4 scrollbar-none scroll-smooth"
-        >
+        {/* Responsive Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {events.map((event, idx) => (
             <motion.a
               key={idx}
               href={event.url}
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.05 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: idx * 0.05 }}
               whileHover={{ y: -8 }}
-              className="flex-[0_0_310px] snap-start relative flex flex-col justify-between overflow-hidden rounded-2xl min-h-[380px] bg-slate-900 border border-slate-800/60 shadow-md hover:shadow-xl cursor-pointer group transition-all duration-300"
+              className="relative flex flex-col justify-between overflow-hidden rounded-2xl min-h-[340px] bg-white dark:bg-brand-primary-light border border-brand-border dark:border-gray-800 hover:border-brand-orange/30 dark:hover:border-brand-orange/40 shadow-sm hover:shadow-xl cursor-pointer group transition-all duration-300"
             >
-              {/* Subtle top indicator line matching the theme color */}
-              <div className="absolute top-0 inset-x-0 h-1 z-20" style={{ backgroundColor: event.color }} />
-
-              {/* Background image with overlay */}
+              {/* Top Accent Hover Glow */}
               <div 
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 opacity-75 group-hover:scale-105 group-hover:opacity-85 z-0"
+                className="absolute top-0 inset-x-0 h-1 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
+                style={{ backgroundColor: event.color }} 
+              />
+
+              {/* Background Image with Dark Gradient Overlay */}
+              <div 
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 z-0"
                 style={{ backgroundImage: `url("${event.image}")` }}
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-slate-950/20 via-slate-950/50 to-slate-950/90 z-10 transition-all duration-300 group-hover:via-slate-950/15 group-hover:to-slate-950/85" />
+              <div className="absolute inset-0 bg-gradient-to-b from-brand-primary/10 via-brand-primary/60 to-brand-primary/95 dark:from-black/10 dark:via-black/50 dark:to-black/95 z-10 transition-all duration-300 group-hover:via-brand-primary/15 group-hover:to-brand-primary/98 dark:group-hover:to-black/98" />
 
-              {/* Content layer */}
+              {/* Content Panel */}
               <div className="relative z-20 flex flex-col justify-between h-full flex-1 p-6">
                 
-                {/* Top Row: Date Pill */}
+                {/* Date Pill */}
                 <div className="flex">
-                  <span className="text-[10px] font-extrabold uppercase bg-slate-950/40 text-white px-3 py-1.5 rounded-lg backdrop-blur-md border border-white/20 tracking-wider flex items-center gap-1.5">
+                  <span className="text-[10px] font-extrabold uppercase bg-white/10 dark:bg-black/25 text-white px-3 py-1.5 rounded-lg backdrop-blur-md border border-white/15 tracking-wider flex items-center gap-1.5">
                     <Calendar size={12} /> {event.date}
                   </span>
                 </div>
 
-                {/* Bottom Row: Title, Discount & Description */}
+                {/* Info Display */}
                 <div className="w-full">
                   <span 
                     className="text-[10px] uppercase tracking-wider font-extrabold block mb-1" 
-                    style={{ 
-                      color: event.color,
-                      textShadow: '0 1px 4px rgba(0, 0, 0, 0.8)'
-                    }}
+                    style={{ color: event.color }}
                   >
                     {event.tag} • {event.discount}
                   </span>
                   
-                  <h4 
-                    className="text-white text-2xl font-display font-black mb-2 tracking-tight leading-snug"
-                    style={{ textShadow: '0 2px 12px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,0.7)' }}
-                  >
+                  <h4 className="text-white text-2xl font-display font-black mb-1.5 tracking-tight leading-snug">
                     {event.name}
                   </h4>
 
-                  <p 
-                    className="text-white/85 text-xs leading-relaxed mb-4 group-hover:text-white transition-colors"
-                    style={{ textShadow: '0 1px 6px rgba(0,0,0,0.85)' }}
-                  >
+                  <p className="text-white/80 group-hover:text-white text-xs leading-relaxed mb-4 transition-colors duration-300">
                     {event.desc}
                   </p>
 
-                  <div className="flex items-center justify-between border-t border-white/10 pt-3 mt-1.5">
-                    <div className="flex items-center gap-1.5 text-xs text-white font-bold">
-                      Code: <span className="font-mono bg-white/10 px-2 py-0.5 rounded text-white" style={{ color: event.color }}>{event.code}</span>
+                  {/* Coupon & Action row */}
+                  <div className="flex items-center justify-between border-t border-white/10 pt-3.5 mt-1.5">
+                    <div className="flex items-center gap-1.5 text-xs text-white/90 font-bold">
+                      Code: <span className="font-mono bg-white/15 dark:bg-black/25 px-2.5 py-0.5 rounded text-white border border-white/10" style={{ color: event.color }}>{event.code}</span>
                     </div>
 
                     <button
                       onClick={(e) => copyCode(e, event.code)}
-                      className="flex items-center gap-1 bg-white/10 hover:bg-white/20 text-white text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1.5 rounded-md transition-colors border border-white/10"
+                      className="flex items-center gap-1 bg-white/10 hover:bg-brand-orange hover:border-brand-orange text-white text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1.5 rounded-lg border border-white/15 transition-all duration-300"
                     >
                       {copiedCode === event.code ? (
                         <>
@@ -259,7 +222,7 @@ export default function Festivals() {
 
               </div>
 
-              {/* Shimmer Overlay effect */}
+              {/* Shimmer Overlay */}
               <div className="absolute top-0 -left-[150%] w-1/2 h-full bg-gradient-to-r from-transparent via-white/8 to-transparent skew-x-[-25deg] transition-all duration-[750ms] group-hover:left-[150%] pointer-events-none z-30" />
 
             </motion.a>
