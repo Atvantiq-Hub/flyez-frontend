@@ -40,6 +40,9 @@ export default function FlightSearchForm() {
   const [validationError, setValidationError] = useState('');
   const [directFlights, setDirectFlights] = useState(false);
   const [preferredAirline, setPreferredAirline] = useState('');
+  const [flexibleDates, setFlexibleDates] = useState(false);
+  const [nearOrigin, setNearOrigin] = useState(false);
+  const [nearDest, setNearDest] = useState(false);
 
   // Swap origin and destination
   const handleSwap = () => {
@@ -104,6 +107,15 @@ export default function FlightSearchForm() {
     }
     if (preferredAirline) {
       queryParams.append('airline', preferredAirline);
+    }
+    if (flexibleDates) {
+      queryParams.append('flex', '1');
+    }
+    if (nearOrigin) {
+      queryParams.append('nearOrigin', '1');
+    }
+    if (nearDest) {
+      queryParams.append('nearDest', '1');
     }
 
     // Append child ages
@@ -263,7 +275,7 @@ export default function FlightSearchForm() {
           }`}>
             {/* From & To with absolutely overlapping Swap */}
             <div className="relative flex w-full flex-col lg:flex-row gap-4 lg:gap-0 lg:col-span-1">
-              <div className="flex-1">
+              <div className="flex-1 flex flex-col">
                 <AirportAutocomplete 
                   label="From" 
                   placeholder="Origin Airport" 
@@ -275,6 +287,15 @@ export default function FlightSearchForm() {
                   type={1}
                   isOrigin={true}
                 />
+                <label className="flex items-center gap-1.5 mt-2 ml-1 cursor-pointer text-xs font-semibold text-brand-text-muted select-none">
+                  <input 
+                    type="checkbox" 
+                    checked={nearOrigin}
+                    onChange={(e) => setNearOrigin(e.target.checked)}
+                    className="w-3.5 h-3.5 cursor-pointer accent-brand-accent"
+                  />
+                  Search nearby airports
+                </label>
               </div>
               
               {/* Overlapping Swap button */}
@@ -286,7 +307,7 @@ export default function FlightSearchForm() {
                 <ArrowLeftRight size={14} />
               </button>
 
-              <div className="flex-1">
+              <div className="flex-1 flex flex-col">
                 <AirportAutocomplete 
                   label="To" 
                   placeholder="Destination Airport" 
@@ -298,6 +319,15 @@ export default function FlightSearchForm() {
                   type={2}
                   isOrigin={false}
                 />
+                <label className="flex items-center gap-1.5 mt-2 ml-1 cursor-pointer text-xs font-semibold text-brand-text-muted select-none">
+                  <input 
+                    type="checkbox" 
+                    checked={nearDest}
+                    onChange={(e) => setNearDest(e.target.checked)}
+                    className="w-3.5 h-3.5 cursor-pointer accent-brand-accent"
+                  />
+                  Search nearby airports
+                </label>
               </div>
             </div>
 
@@ -446,24 +476,50 @@ export default function FlightSearchForm() {
           </div>
         )}
 
-        {/* Direct Flights Checkbox & Search Submit Button */}
-        <div className="flex flex-wrap justify-between items-center gap-4 mt-6">
-          <label className="flex items-center gap-2 cursor-pointer text-sm font-semibold text-brand-text-muted select-none">
-            <input 
-              type="checkbox" 
-              checked={directFlights} 
-              onChange={(e) => setDirectFlights(e.target.checked)}
-              className="w-[18px] h-[18px] cursor-pointer accent-brand-accent"
-            />
-            Direct flights only
-          </label>
+        {/* Travel Preferences Checklist & Search Submit Button */}
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mt-6 border-t border-brand-border/60 dark:border-gray-800/80 pt-6">
+          <div className="flex flex-wrap gap-x-6 gap-y-3">
+            <label className="flex items-center gap-2 cursor-pointer text-sm font-semibold text-brand-text-muted select-none">
+              <input 
+                type="checkbox" 
+                checked={directFlights} 
+                onChange={(e) => setDirectFlights(e.target.checked)}
+                className="w-[18px] h-[18px] cursor-pointer accent-brand-accent"
+              />
+              Direct flights only
+            </label>
+
+            <label className="flex items-center gap-2 cursor-pointer text-sm font-semibold text-brand-text-muted select-none">
+              <input 
+                type="checkbox" 
+                checked={flexibleDates} 
+                onChange={(e) => setFlexibleDates(e.target.checked)}
+                className="w-[18px] h-[18px] cursor-pointer accent-brand-accent"
+              />
+              My dates are flexible (±3 Days)
+            </label>
+          </div>
 
           <button
             type="submit"
-            className="py-4 px-10 rounded-md bg-brand-orange text-white text-base font-bold flex items-center justify-center gap-2.5 shadow-glow transition-all duration-350 hover:bg-brand-orange-hover hover:-translate-y-0.5 w-full lg:max-w-[240px]"
+            className="py-4 px-10 rounded-md bg-brand-orange text-white text-base font-bold flex items-center justify-center gap-2.5 shadow-glow transition-all duration-350 hover:bg-brand-orange-hover hover:-translate-y-0.5 w-full lg:max-w-[240px] cursor-pointer"
           >
             <Search size={18} /> Search Flights
           </button>
+        </div>
+
+        {/* Inline Hotline Promo alert inspired by CheapoAir */}
+        <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-3 bg-brand-orange/5 dark:bg-brand-orange/10 border border-brand-orange/20 rounded-xl px-5 py-3.5 text-xs md:text-sm text-brand-primary dark:text-white font-semibold">
+          <span className="flex items-center gap-2 text-brand-orange dark:text-brand-orange">
+            <span className="w-2 h-2 rounded-full bg-brand-orange animate-ping" />
+            Save an Extra $30 to $50 Off Secret Offline Rates
+          </span>
+          <a 
+            href="tel:1800-521-4263" 
+            className="flex items-center gap-1.5 bg-brand-orange text-white hover:bg-brand-orange-hover px-4 py-2 rounded-lg font-bold transition-all shadow-[0_2px_8px_rgba(255,92,0,0.2)]"
+          >
+            Call desk: 1800-521-4263
+          </a>
         </div>
       </form>
     </div>
