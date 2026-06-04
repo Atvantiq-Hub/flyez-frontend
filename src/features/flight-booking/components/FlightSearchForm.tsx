@@ -1,196 +1,60 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Calendar, Search, ArrowLeftRight, Plus, Trash2, ShieldAlert } from 'lucide-react';
 import AirportAutocomplete from './AirportAutocomplete';
 import PassengerCountSelector from './PassengerCountSelector';
-
-interface MultiFlight {
-  origin: string;
-  originName: string;
-  destination: string;
-  destinationName: string;
-  date: string;
-}
+import { useFlightSearchForm } from '../hooks/useFlightSearchForm';
 
 export default function FlightSearchForm() {
-  const [tripType, setTripType] = useState<'round' | 'oneway' | 'multicity'>('round');
-  const [cabin, setCabin] = useState('E'); // 'E' (Economy), 'B' (Business), 'F' (First), 'P' (Premium)
-  
-  // Passenger state
-  const [adults, setAdults] = useState(1);
-  const [childrenCount, setChildrenCount] = useState(0);
-  const [childAges, setChildAges] = useState<string[]>([]);
-  const [infants, setInfants] = useState(0);
+  const {
+    tripType,
+    setTripType,
+    cabin,
+    setCabin,
+    adults,
+    setAdults,
+    childrenCount,
+    setChildrenCount,
+    childAges,
+    setChildAges,
+    infants,
+    setInfants,
+    origin,
+    setOrigin,
+    originName,
+    destination,
+    setDestination,
+    destinationName,
+    departDate,
+    setDepartDate,
+    returnDate,
+    setReturnDate,
+    multiFlights,
+    addMultiFlight,
+    removeMultiFlight,
+    updateMultiFlight,
+    directFlights,
+    setDirectFlights,
+    preferredAirline,
+    setPreferredAirline,
+    flexibleDates,
+    setFlexibleDates,
+    nearOrigin,
+    setNearOrigin,
+    nearDest,
+    setNearDest,
+    validationError,
+    setValidationError,
+    handleSearchSubmit,
+    handleSwap
+  } = useFlightSearchForm();
 
-  // Round / Oneway state
-  const [origin, setOrigin] = useState('');
-  const [originName, setOriginName] = useState('');
-  const [destination, setDestination] = useState('');
-  const [destinationName, setDestinationName] = useState('');
-  const [departDate, setDepartDate] = useState('');
-  const [returnDate, setReturnDate] = useState('');
-
-  // Multi-city state (defaults to 2 flights)
-  const [multiFlights, setMultiFlights] = useState<MultiFlight[]>([
-    { origin: '', originName: '', destination: '', destinationName: '', date: '' },
-    { origin: '', originName: '', destination: '', destinationName: '', date: '' }
-  ]);
-
-  const [validationError, setValidationError] = useState('');
-  const [directFlights, setDirectFlights] = useState(false);
-  const [preferredAirline, setPreferredAirline] = useState('');
-  const [flexibleDates, setFlexibleDates] = useState(false);
-  const [nearOrigin, setNearOrigin] = useState(false);
-  const [nearDest, setNearDest] = useState(false);
-
-  // Swap origin and destination
-  const handleSwap = () => {
-    const tempOrigin = origin;
-    const tempOriginName = originName;
-    setOrigin(destination);
-    setOriginName(destinationName);
-    setDestination(tempOrigin);
-    setDestinationName(tempOriginName);
-  };
-
-  // Convert Date from YYYY-MM-DD to MM/DD/YYYY
+  // Convert Date from YYYY-MM-DD to MM/DD/YYYY (only used inside component if needed)
   const formatDateToBackend = (dateStr: string) => {
     if (!dateStr) return '';
     const [year, month, day] = dateStr.split('-');
     return `${month}/${day}/${year}`;
-  };
-
-  // Add Multi-city flight segment
-  const addMultiFlight = () => {
-    if (multiFlights.length < 5) {
-      setMultiFlights([...multiFlights, { origin: '', originName: '', destination: '', destinationName: '', date: '' }]);
-    }
-  };
-
-  // Remove Multi-city flight segment
-  const removeMultiFlight = (index: number) => {
-    if (multiFlights.length > 2) {
-      const updated = multiFlights.filter((_, i) => i !== index);
-      setMultiFlights(updated);
-    }
-  };
-
-  // Update a Multi-city flight segment parameter
-  const updateMultiFlight = (index: number, field: keyof MultiFlight, value: string, nameVal = '') => {
-    const updated = [...multiFlights];
-    if (field === 'origin') {
-      updated[index].origin = value;
-      updated[index].originName = nameVal;
-    } else if (field === 'destination') {
-      updated[index].destination = value;
-      updated[index].destinationName = nameVal;
-    } else {
-      updated[index][field] = value;
-    }
-    setMultiFlights(updated);
-  };
-
-  // Trigger search submission
-  const handleSearchSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setValidationError('');
-
-    const queryParams = new URLSearchParams();
-    queryParams.append('couch', cabin);
-    queryParams.append('adult', String(adults));
-    queryParams.append('children', String(childrenCount));
-    queryParams.append('infant', String(infants));
-
-    if (directFlights) {
-      queryParams.append('direct', '1');
-    }
-    if (preferredAirline) {
-      queryParams.append('airline', preferredAirline);
-    }
-    if (flexibleDates) {
-      queryParams.append('flex', '1');
-    }
-    if (nearOrigin) {
-      queryParams.append('nearOrigin', '1');
-    }
-    if (nearDest) {
-      queryParams.append('nearDest', '1');
-    }
-
-    // Append child ages
-    childAges.forEach((age, index) => {
-      queryParams.append(`ChildrenAge_${index + 1}`, age || '2');
-    });
-
-    if (tripType !== 'multicity') {
-      // Validate standard search
-      if (!origin) {
-        setValidationError('Please select an origin airport.');
-        return;
-      }
-      if (!destination) {
-        setValidationError('Please select a destination airport.');
-        return;
-      }
-      if (origin === destination) {
-        setValidationError('Origin and Destination airports cannot be the same.');
-        return;
-      }
-      if (!departDate) {
-        setValidationError('Please select a departure date.');
-        return;
-      }
-      if (tripType === 'round' && !returnDate) {
-        setValidationError('Please select a return date.');
-        return;
-      }
-      if (tripType === 'round' && returnDate < departDate) {
-        setValidationError('Return date must be after departure date.');
-        return;
-      }
-
-      queryParams.append('tp', tripType);
-      queryParams.append('d1', origin);
-      queryParams.append('ar1', destination);
-      queryParams.append('dt1', formatDateToBackend(departDate));
-      
-      if (tripType === 'round') {
-        queryParams.append('ardt1', formatDateToBackend(returnDate));
-      }
-    } else {
-      // Validate Multi-city search
-      queryParams.append('tp', 'multicity');
-      
-      for (let i = 0; i < multiFlights.length; i++) {
-        const flight = multiFlights[i];
-        if (!flight.origin) {
-          setValidationError(`Flight ${i + 1}: Please select an origin airport.`);
-          return;
-        }
-        if (!flight.destination) {
-          setValidationError(`Flight ${i + 1}: Please select a destination airport.`);
-          return;
-        }
-        if (flight.origin === flight.destination) {
-          setValidationError(`Flight ${i + 1}: Origin and Destination cannot be the same.`);
-          return;
-        }
-        if (!flight.date) {
-          setValidationError(`Flight ${i + 1}: Please select a departure date.`);
-          return;
-        }
-        
-        // Append fields named as: d1, ar1, dt1, d2, ar2, dt2...
-        queryParams.append(`d${i + 1}`, flight.origin);
-        queryParams.append(`ar${i + 1}`, flight.destination);
-        queryParams.append(`dt${i + 1}`, formatDateToBackend(flight.date));
-      }
-    }
-
-    // Redirect to backend flight-listing page
-    const searchUrl = `https://flyez.ai/flight-listing?${queryParams.toString()}`;
-    window.location.href = searchUrl;
   };
 
   return (
@@ -202,15 +66,15 @@ export default function FlightSearchForm() {
           <div className="flex bg-slate-100 p-1 rounded-md">
             {[
               { id: 'round', label: 'Round Trip' },
-              { id: 'oneway', label: 'One Way' },
+              { id: 'one', label: 'One Way' },
               { id: 'multicity', label: 'Multi-City' }
             ].map(tab => (
               <button
                 key={tab.id}
                 type="button"
                 onClick={() => {
-                  setTripType(tab.id as 'round' | 'oneway' | 'multicity');
-                  setValidationError('');
+                  setTripType(tab.id as 'round' | 'one' | 'multicity');
+                  setValidationError(null);
                 }}
                 className={`py-2 px-4 rounded-md text-sm font-semibold transition-all duration-200 ${
                   tripType === tab.id 
@@ -283,8 +147,7 @@ export default function FlightSearchForm() {
                     placeholder="Origin Airport" 
                     value={origin} 
                     onSelect={(code, name) => {
-                      setOrigin(code);
-                      setOriginName(name);
+                      setOrigin(code, name);
                     }}
                     type={1}
                     isOrigin={true}
@@ -306,8 +169,7 @@ export default function FlightSearchForm() {
                     placeholder="Destination Airport" 
                     value={destination} 
                     onSelect={(code, name) => {
-                      setDestination(code);
-                      setDestinationName(name);
+                      setDestination(code, name);
                     }}
                     type={2}
                     isOrigin={false}
@@ -462,11 +324,7 @@ export default function FlightSearchForm() {
                 type="button"
                 onClick={addMultiFlight}
                 disabled={multiFlights.length >= 5}
-                className={`flex items-center gap-2 font-semibold text-sm py-2.5 px-4.5 rounded-md border border-dashed border-brand-accent bg-brand-accent/2 transition-all ${
-                  multiFlights.length >= 5 
-                    ? 'opacity-50 cursor-not-allowed' 
-                    : 'text-brand-accent cursor-pointer hover:bg-brand-accent/5'
-                }`}
+                className="flex items-center gap-2 font-semibold text-sm py-2.5 px-4.5 rounded-md border border-dashed border-brand-accent bg-brand-accent/2 transition-all text-brand-accent cursor-pointer hover:bg-brand-accent/5"
               >
                 <Plus size={16} /> Add Another Flight
               </button>

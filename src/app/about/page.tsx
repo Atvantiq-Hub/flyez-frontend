@@ -6,7 +6,8 @@ import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PromoAlert from '@/components/PromoAlert';
-import TravelGptChat from '@/components/TravelGptChat';
+import dynamic from 'next/dynamic';
+const TravelGptChat = dynamic(() => import('@/features/chat-ai/components/TravelGptChat'), { ssr: false });
 
 interface Pillar {
   number: string;
