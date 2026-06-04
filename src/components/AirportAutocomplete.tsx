@@ -10,6 +10,7 @@ interface AirportAutocompleteProps {
   onSelect: (code: string, name: string) => void;
   type: number; /* 1 for origin, 2 for destination, 3+ for multicity */
   isOrigin?: boolean;
+  inputBorderClass?: string;
 }
 
 export default function AirportAutocomplete({ 
@@ -18,7 +19,8 @@ export default function AirportAutocomplete({
   value, 
   onSelect, 
   type, 
-  isOrigin = true 
+  isOrigin = true,
+  inputBorderClass
 }: AirportAutocompleteProps) {
   const [query, setQuery] = useState(value || '');
   const [suggestionsHtml, setSuggestionsHtml] = useState('');
@@ -94,8 +96,10 @@ export default function AirportAutocomplete({
     <div ref={wrapperRef} className="relative w-full">
       {/* Label and input container */}
       <div 
-        className={`flex flex-col py-3 px-4 bg-white rounded-md cursor-text transition-all duration-350 shadow-sm border ${
-          isOpen ? 'border-brand-accent shadow-[0_0_25px_rgba(37,99,235,0.3)]' : 'border-brand-border'
+        className={`flex flex-col py-3.5 px-4 bg-white cursor-text transition-all duration-350 shadow-sm border ${
+          inputBorderClass ? inputBorderClass : 'rounded-lg border-brand-border'
+        } ${
+          isOpen ? 'border-brand-accent shadow-[0_0_25px_rgba(37,99,235,0.25)] relative z-20' : ''
         }`}
         onClick={() => setIsOpen(true)}
       >

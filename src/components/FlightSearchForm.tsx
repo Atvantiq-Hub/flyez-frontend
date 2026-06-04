@@ -224,38 +224,52 @@ export default function FlightSearchForm() {
           </div>
 
           {/* Class & Airline Dropdowns */}
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4.5">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-semibold text-brand-text-muted">Class:</span>
-              <select
-                value={cabin}
-                onChange={(e) => setCabin(e.target.value)}
-                className="py-2 px-3.5 rounded-sm border border-brand-border bg-white text-sm font-semibold text-brand-primary cursor-pointer outline-none"
-              >
-                <option value="E">Economy</option>
-                <option value="B">Business</option>
-                <option value="F">First Class</option>
-                <option value="P">Premium Economy</option>
-              </select>
+              <span className="text-xs font-bold text-brand-text-muted">Class:</span>
+              <div className="relative flex items-center">
+                <select
+                  value={cabin}
+                  onChange={(e) => setCabin(e.target.value)}
+                  className="appearance-none bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700/80 border-none rounded-md py-1.5 pl-3 pr-8 text-xs font-bold text-brand-primary dark:text-white cursor-pointer outline-none transition-all"
+                >
+                  <option value="E">Economy</option>
+                  <option value="B">Business</option>
+                  <option value="F">First Class</option>
+                  <option value="P">Premium Economy</option>
+                </select>
+                <div className="absolute right-2.5 pointer-events-none text-brand-text-muted flex items-center">
+                  <svg className="w-3 h-3 fill-none stroke-current" strokeWidth="3" viewBox="0 0 24 24">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </div>
+              </div>
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="text-xs font-semibold text-brand-text-muted">Airline:</span>
-              <select
-                value={preferredAirline}
-                onChange={(e) => setPreferredAirline(e.target.value)}
-                className="py-2 px-3.5 rounded-sm border border-brand-border bg-white text-sm font-semibold text-brand-primary cursor-pointer outline-none"
-              >
-                <option value="">All Airlines</option>
-                <option value="AA">American Airlines (AA)</option>
-                <option value="DL">Delta Air Lines (DL)</option>
-                <option value="UA">United Airlines (UA)</option>
-                <option value="BA">British Airways (BA)</option>
-                <option value="LH">Lufthansa (LH)</option>
-                <option value="QR">Qatar Airways (QR)</option>
-                <option value="EK">Emirates (EK)</option>
-                <option value="SQ">Singapore Airlines (SQ)</option>
-              </select>
+              <span className="text-xs font-bold text-brand-text-muted">Airline:</span>
+              <div className="relative flex items-center">
+                <select
+                  value={preferredAirline}
+                  onChange={(e) => setPreferredAirline(e.target.value)}
+                  className="appearance-none bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700/80 border-none rounded-md py-1.5 pl-3 pr-8 text-xs font-bold text-brand-primary dark:text-white cursor-pointer outline-none transition-all"
+                >
+                  <option value="">All Airlines</option>
+                  <option value="AA">American Airlines (AA)</option>
+                  <option value="DL">Delta Air Lines (DL)</option>
+                  <option value="UA">United Airlines (UA)</option>
+                  <option value="BA">British Airways (BA)</option>
+                  <option value="LH">Lufthansa (LH)</option>
+                  <option value="QR">Qatar Airways (QR)</option>
+                  <option value="EK">Emirates (EK)</option>
+                  <option value="SQ">Singapore Airlines (SQ)</option>
+                </select>
+                <div className="absolute right-2.5 pointer-events-none text-brand-text-muted flex items-center">
+                  <svg className="w-3.5 h-3.5 fill-none stroke-current" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -270,11 +284,11 @@ export default function FlightSearchForm() {
 
         {/* Standard Search Fields (Round trip & One way) */}
         {tripType !== 'multicity' && (
-          <div className={`grid gap-4 items-center w-full grid-cols-1 ${
+          <div className={`grid gap-4 items-stretch w-full grid-cols-1 ${
             tripType === 'round' ? 'lg:grid-cols-[2.2fr_1.1fr_1.1fr_1.2fr]' : 'lg:grid-cols-[2.2fr_1.2fr_1.4fr]'
           }`}>
             {/* From & To with absolutely overlapping Swap */}
-            <div className="relative flex w-full flex-col lg:flex-row gap-4 lg:gap-0 lg:col-span-1">
+            <div className="relative flex w-full flex-col lg:flex-row lg:col-span-1">
               <div className="flex-1 flex flex-col">
                 <AirportAutocomplete 
                   label="From" 
@@ -286,16 +300,8 @@ export default function FlightSearchForm() {
                   }}
                   type={1}
                   isOrigin={true}
+                  inputBorderClass="rounded-t-lg rounded-b-none border-b-0 lg:rounded-l-lg lg:rounded-r-none lg:border-r-0 lg:border-b border-brand-border"
                 />
-                <label className="flex items-center gap-1.5 mt-2 ml-1 cursor-pointer text-xs font-semibold text-brand-text-muted select-none">
-                  <input 
-                    type="checkbox" 
-                    checked={nearOrigin}
-                    onChange={(e) => setNearOrigin(e.target.checked)}
-                    className="w-3.5 h-3.5 cursor-pointer accent-brand-accent"
-                  />
-                  Search nearby airports
-                </label>
               </div>
               
               {/* Overlapping Swap button */}
@@ -318,21 +324,13 @@ export default function FlightSearchForm() {
                   }}
                   type={2}
                   isOrigin={false}
+                  inputBorderClass="rounded-b-lg rounded-t-none border-t-0 lg:rounded-r-lg lg:rounded-l-none lg:border-l-0 lg:border-t border-brand-border"
                 />
-                <label className="flex items-center gap-1.5 mt-2 ml-1 cursor-pointer text-xs font-semibold text-brand-text-muted select-none">
-                  <input 
-                    type="checkbox" 
-                    checked={nearDest}
-                    onChange={(e) => setNearDest(e.target.checked)}
-                    className="w-3.5 h-3.5 cursor-pointer accent-brand-accent"
-                  />
-                  Search nearby airports
-                </label>
               </div>
             </div>
 
             {/* Depart Date */}
-            <div className="search-input-capsule flex flex-col py-3 px-4 bg-white rounded-md border border-brand-border shadow-sm">
+            <div className="search-input-capsule flex flex-col justify-center py-3.5 px-4 bg-white rounded-lg border border-brand-border shadow-sm">
               <span className="text-[11px] uppercase text-brand-text-muted font-semibold flex items-center gap-1 mb-1">
                 <Calendar size={12} className="text-brand-accent" />
                 Depart
@@ -349,7 +347,7 @@ export default function FlightSearchForm() {
 
             {/* Return Date (Round trip only) */}
             {tripType === 'round' && (
-              <div className="search-input-capsule flex flex-col py-3 px-4 bg-white rounded-md border border-brand-border shadow-sm">
+              <div className="search-input-capsule flex flex-col justify-center py-3.5 px-4 bg-white rounded-lg border border-brand-border shadow-sm">
                 <span className="text-[11px] uppercase text-brand-text-muted font-semibold flex items-center gap-1 mb-1">
                   <Calendar size={12} className="text-brand-orange" />
                   Return
@@ -385,7 +383,7 @@ export default function FlightSearchForm() {
             {multiFlights.map((flight, index) => (
               <div 
                 key={index}
-                className="grid gap-3 p-4 bg-slate-50 rounded-md border border-dashed border-brand-border items-center grid-cols-1 md:grid-cols-[40px_1fr_1fr_1fr_48px]"
+                className="grid gap-3 p-4 bg-slate-50 rounded-lg border border-dashed border-brand-border items-center grid-cols-1 md:grid-cols-[40px_1fr_1fr_1fr_48px]"
               >
                 {/* Segment indicator */}
                 <div className="flex items-center justify-center w-7 h-7 rounded-full bg-brand-primary text-white text-xs font-bold mx-auto">
@@ -413,7 +411,7 @@ export default function FlightSearchForm() {
                 />
 
                 {/* Depart Date */}
-                <div className="flex flex-col py-3 px-4 bg-white border border-brand-border rounded-md shadow-sm">
+                <div className="flex flex-col py-3.5 px-4 bg-white border border-brand-border rounded-lg shadow-sm">
                   <span className="text-[11px] uppercase text-brand-text-muted font-semibold flex items-center gap-1 mb-1">
                     <Calendar size={12} className="text-brand-accent" />
                     Depart Date
@@ -451,11 +449,7 @@ export default function FlightSearchForm() {
                 type="button"
                 onClick={addMultiFlight}
                 disabled={multiFlights.length >= 5}
-                className={`flex items-center gap-2 font-semibold text-sm py-2.5 px-4.5 rounded-md border border-dashed border-brand-accent bg-brand-accent/2 transition-all ${
-                  multiFlights.length >= 5 
-                    ? 'opacity-50 cursor-not-allowed' 
-                    : 'text-brand-accent cursor-pointer hover:bg-brand-accent/5'
-                }`}
+                className="flex items-center gap-2 font-semibold text-sm py-2.5 px-4.5 rounded-lg border border-dashed border-brand-accent bg-brand-accent/2 transition-all text-brand-accent cursor-pointer hover:bg-brand-accent/5"
               >
                 <Plus size={16} /> Add Another Flight
               </button>
@@ -478,31 +472,107 @@ export default function FlightSearchForm() {
 
         {/* Travel Preferences Checklist & Search Submit Button */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mt-6 border-t border-brand-border/60 dark:border-gray-800/80 pt-6">
-          <div className="flex flex-wrap gap-x-6 gap-y-3">
-            <label className="flex items-center gap-2 cursor-pointer text-sm font-semibold text-brand-text-muted select-none">
-              <input 
-                type="checkbox" 
-                checked={directFlights} 
-                onChange={(e) => setDirectFlights(e.target.checked)}
-                className="w-[18px] h-[18px] cursor-pointer accent-brand-accent"
-              />
-              Direct flights only
+          <div className="flex flex-wrap gap-x-6 gap-y-3.5 max-w-full lg:max-w-[70%]">
+            {/* Custom Checkbox: Direct flights only */}
+            <label className="flex items-center gap-2.5 cursor-pointer text-sm font-semibold text-brand-text-muted select-none group">
+              <div className="relative flex items-center justify-center">
+                <input 
+                  type="checkbox" 
+                  checked={directFlights} 
+                  onChange={(e) => setDirectFlights(e.target.checked)}
+                  className="sr-only"
+                />
+                <div className={`w-5 h-5 rounded border transition-all flex items-center justify-center ${
+                  directFlights 
+                    ? 'bg-brand-orange border-brand-orange text-white shadow-[0_2px_6px_rgba(255,92,0,0.3)]' 
+                    : 'bg-white border-brand-border dark:border-gray-700 hover:border-brand-orange/60'
+                }`}>
+                  {directFlights && (
+                    <svg className="w-3.5 h-3.5 stroke-current fill-none" strokeWidth="3" viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  )}
+                </div>
+              </div>
+              <span className="group-hover:text-brand-primary transition-colors">Direct flights only</span>
             </label>
 
-            <label className="flex items-center gap-2 cursor-pointer text-sm font-semibold text-brand-text-muted select-none">
-              <input 
-                type="checkbox" 
-                checked={flexibleDates} 
-                onChange={(e) => setFlexibleDates(e.target.checked)}
-                className="w-[18px] h-[18px] cursor-pointer accent-brand-accent"
-              />
-              My dates are flexible (±3 Days)
+            {/* Custom Checkbox: My dates are flexible */}
+            <label className="flex items-center gap-2.5 cursor-pointer text-sm font-semibold text-brand-text-muted select-none group">
+              <div className="relative flex items-center justify-center">
+                <input 
+                  type="checkbox" 
+                  checked={flexibleDates} 
+                  onChange={(e) => setFlexibleDates(e.target.checked)}
+                  className="sr-only"
+                />
+                <div className={`w-5 h-5 rounded border transition-all flex items-center justify-center ${
+                  flexibleDates 
+                    ? 'bg-brand-orange border-brand-orange text-white shadow-[0_2px_6px_rgba(255,92,0,0.3)]' 
+                    : 'bg-white border-brand-border dark:border-gray-700 hover:border-brand-orange/60'
+                }`}>
+                  {flexibleDates && (
+                    <svg className="w-3.5 h-3.5 stroke-current fill-none" strokeWidth="3" viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  )}
+                </div>
+              </div>
+              <span className="group-hover:text-brand-primary transition-colors">My dates are flexible (±3 Days)</span>
+            </label>
+
+            {/* Custom Checkbox: Search nearby origin */}
+            <label className="flex items-center gap-2.5 cursor-pointer text-sm font-semibold text-brand-text-muted select-none group">
+              <div className="relative flex items-center justify-center">
+                <input 
+                  type="checkbox" 
+                  checked={nearOrigin} 
+                  onChange={(e) => setNearOrigin(e.target.checked)}
+                  className="sr-only"
+                />
+                <div className={`w-5 h-5 rounded border transition-all flex items-center justify-center ${
+                  nearOrigin 
+                    ? 'bg-brand-orange border-brand-orange text-white shadow-[0_2px_6px_rgba(255,92,0,0.3)]' 
+                    : 'bg-white border-brand-border dark:border-gray-700 hover:border-brand-orange/60'
+                }`}>
+                  {nearOrigin && (
+                    <svg className="w-3.5 h-3.5 stroke-current fill-none" strokeWidth="3" viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  )}
+                </div>
+              </div>
+              <span className="group-hover:text-brand-primary transition-colors">Search nearby origin</span>
+            </label>
+
+            {/* Custom Checkbox: Search nearby destination */}
+            <label className="flex items-center gap-2.5 cursor-pointer text-sm font-semibold text-brand-text-muted select-none group">
+              <div className="relative flex items-center justify-center">
+                <input 
+                  type="checkbox" 
+                  checked={nearDest} 
+                  onChange={(e) => setNearDest(e.target.checked)}
+                  className="sr-only"
+                />
+                <div className={`w-5 h-5 rounded border transition-all flex items-center justify-center ${
+                  nearDest 
+                    ? 'bg-brand-orange border-brand-orange text-white shadow-[0_2px_6px_rgba(255,92,0,0.3)]' 
+                    : 'bg-white border-brand-border dark:border-gray-700 hover:border-brand-orange/60'
+                }`}>
+                  {nearDest && (
+                    <svg className="w-3.5 h-3.5 stroke-current fill-none" strokeWidth="3" viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  )}
+                </div>
+              </div>
+              <span className="group-hover:text-brand-primary transition-colors">Search nearby destination</span>
             </label>
           </div>
 
           <button
             type="submit"
-            className="py-4 px-10 rounded-md bg-brand-orange text-white text-base font-bold flex items-center justify-center gap-2.5 shadow-glow transition-all duration-350 hover:bg-brand-orange-hover hover:-translate-y-0.5 w-full lg:max-w-[240px] cursor-pointer"
+            className="py-4 px-10 rounded-lg bg-brand-orange text-white text-base font-bold flex items-center justify-center gap-2.5 shadow-glow transition-all duration-350 hover:bg-brand-orange-hover hover:-translate-y-0.5 w-full lg:max-w-[240px] cursor-pointer"
           >
             <Search size={18} /> Search Flights
           </button>
