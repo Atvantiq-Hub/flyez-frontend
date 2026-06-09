@@ -89,28 +89,28 @@ export default function PassengerCountSelector({
       {/* Selector Button */}
       <div 
         onClick={() => setIsOpen(!isOpen)}
-        className={`search-input-capsule select-none cursor-pointer flex flex-col py-3 px-4 bg-white rounded-md transition-all duration-350 shadow-sm border ${
-          isOpen ? 'border-brand-accent shadow-[0_0_25px_rgba(37,99,235,0.3)]' : 'border-brand-border'
-        }`}
+        className={`search-input-capsule select-none cursor-pointer ${isOpen ? 'is-active' : ''}`}
       >
-        <span className="text-[11px] uppercase text-brand-text-muted font-semibold flex items-center gap-1 mb-1">
-          <Users size={12} className="text-brand-accent" />
-          Travelers
+        <span className="field-icon-chip bg-brand-accent/10 text-brand-accent">
+          <Users size={18} />
         </span>
-        <div className="flex items-center justify-between">
-          <span className="text-base font-bold text-brand-primary">
+        <div className="flex flex-col min-w-0 flex-1">
+          <span className="text-[10px] uppercase text-brand-text-muted font-bold tracking-[0.09em]">
+            Travelers
+          </span>
+          <span className="text-[17px] font-bold text-brand-primary">
             {totalTravelers} Traveler{totalTravelers > 1 ? 's' : ''}
           </span>
-          <ChevronDown 
-            size={16} 
-            className={`text-brand-text-muted transition-transform duration-150 ${isOpen ? 'rotate-180' : ''}`} 
-          />
         </div>
+        <ChevronDown
+          size={16}
+          className={`text-brand-text-muted transition-transform duration-150 shrink-0 ${isOpen ? 'rotate-180' : ''}`}
+        />
       </div>
 
       {/* Popover Panel */}
       {isOpen && (
-        <div className="absolute top-[calc(100%+6px)] right-0 w-[290px] bg-white rounded-md shadow-lg border border-slate-200/80 p-5 z-[999] animate-[fadeIn_0.2s_ease]">
+        <div className="booking-popover absolute top-[calc(100%+8px)] right-0 w-[290px] bg-white p-5 z-[999] animate-[fadeIn_0.2s_ease]">
           {/* Row: Adults */}
           <div className="flex items-center justify-between mb-4.5">
             <div>
@@ -121,7 +121,7 @@ export default function PassengerCountSelector({
               <button 
                 type="button"
                 onClick={() => handleDecrement('adults')} 
-                className={`w-8 h-8 rounded-sm border border-brand-border flex items-center justify-center transition-colors ${
+                className={`w-8 h-8 rounded-lg border border-brand-border flex items-center justify-center transition-colors ${
                   adults > 1 ? 'text-brand-accent hover:bg-slate-50' : 'text-brand-text-muted opacity-50 cursor-not-allowed'
                 }`}
                 disabled={adults <= 1}
@@ -132,7 +132,7 @@ export default function PassengerCountSelector({
               <button 
                 type="button"
                 onClick={() => handleIncrement('adults')} 
-                className="w-8 h-8 rounded-sm border border-brand-border flex items-center justify-center text-brand-accent hover:bg-slate-50 transition-colors"
+                className="w-8 h-8 rounded-lg border border-brand-border flex items-center justify-center text-brand-accent hover:bg-slate-50 transition-colors"
               >
                 <Plus size={14} />
               </button>
@@ -149,7 +149,7 @@ export default function PassengerCountSelector({
               <button 
                 type="button"
                 onClick={() => handleDecrement('children')} 
-                className={`w-8 h-8 rounded-sm border border-brand-border flex items-center justify-center transition-colors ${
+                className={`w-8 h-8 rounded-lg border border-brand-border flex items-center justify-center transition-colors ${
                   childrenCount > 0 ? 'text-brand-accent hover:bg-slate-50' : 'text-brand-text-muted opacity-50 cursor-not-allowed'
                 }`}
                 disabled={childrenCount <= 0}
@@ -160,7 +160,7 @@ export default function PassengerCountSelector({
               <button 
                 type="button"
                 onClick={() => handleIncrement('children')} 
-                className="w-8 h-8 rounded-sm border border-brand-border flex items-center justify-center text-brand-accent hover:bg-slate-50 transition-colors"
+                className="w-8 h-8 rounded-lg border border-brand-border flex items-center justify-center text-brand-accent hover:bg-slate-50 transition-colors"
               >
                 <Plus size={14} />
               </button>
@@ -202,7 +202,7 @@ export default function PassengerCountSelector({
               <button 
                 type="button"
                 onClick={() => handleDecrement('infants')} 
-                className={`w-8 h-8 rounded-sm border border-brand-border flex items-center justify-center transition-colors ${
+                className={`w-8 h-8 rounded-lg border border-brand-border flex items-center justify-center transition-colors ${
                   infants > 0 ? 'text-brand-accent hover:bg-slate-50' : 'text-brand-text-muted opacity-50 cursor-not-allowed'
                 }`}
                 disabled={infants <= 0}
@@ -213,7 +213,7 @@ export default function PassengerCountSelector({
               <button 
                 type="button"
                 onClick={() => handleIncrement('infants')} 
-                className={`w-8 h-8 rounded-sm border border-brand-border flex items-center justify-center transition-colors ${
+                className={`w-8 h-8 rounded-lg border border-brand-border flex items-center justify-center transition-colors ${
                   infants < adults ? 'text-brand-accent hover:bg-slate-50' : 'text-brand-text-muted opacity-50 cursor-not-allowed'
                 }`}
                 disabled={infants >= adults}

@@ -35,12 +35,12 @@ export default function Home() {
       {/* Main Content Sections */}
       <main className="flex-1 pb-10">
         {/* Overlapping Flight Search Form Container */}
-        <div className="premium-container relative z-20 -mt-20 md:-mt-28 lg:-mt-36 mb-10">
+        <div className="premium-container relative z-20 -mt-20 md:-mt-28 lg:-mt-36">
           <FlightSearchForm />
         </div>
 
-        {/* Floating Text Marquee Ticker */}
-        <div className="mb-14">
+        {/* Floating Text Marquee Ticker (padding-top keeps clear space below the booking card) */}
+        <div className="pt-8 md:pt-10 mb-14">
           <Ticker />
         </div>
 

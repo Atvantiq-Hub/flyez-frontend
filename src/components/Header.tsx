@@ -27,7 +27,7 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-[1000] py-4 transition-all duration-350 ${
+      className={`sticky top-0 z-[1000] py-4 transition-all duration-350 font-ui ${
         isSticky
           ? 'bg-white/92 backdrop-blur-md border-b border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(11,26,48,0.05)]'
           : 'bg-white border-b border-slate-100'
@@ -44,7 +44,7 @@ export default function Header() {
               <path d="M45 35.5 C50 35.5, 58 33, 71 23 C63 29, 56 32, 54 34 C58 34, 62 34, 66 34 C58 38, 50 40, 45 40.5 Z" fill="#ff5c00" />
             </svg>
           </div>
-          <span className="text-2xl font-[800] font-display tracking-tight text-brand-primary">
+          <span className="text-2xl font-[800] font-ui tracking-tight text-brand-primary">
             Fly<span className="text-brand-orange">Ez</span>
           </span>
         </a>

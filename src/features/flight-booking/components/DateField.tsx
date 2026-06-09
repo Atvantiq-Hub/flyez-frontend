@@ -37,19 +37,23 @@ export default function DateField({
   const isPlaceholder = !value;
 
   return (
-    <label className="search-input-capsule relative flex flex-col py-3 px-4 bg-white rounded-md border border-brand-border shadow-sm cursor-pointer">
-      <span className="text-[11px] uppercase text-brand-text-muted font-semibold flex items-center gap-1 mb-1">
-        <Calendar size={12} className={accentClass} />
-        {label}
+    <label className="search-input-capsule relative cursor-pointer">
+      <span className={`field-icon-chip ${accentClass.includes('orange') ? 'bg-brand-orange/10 text-brand-orange' : 'bg-brand-accent/10 text-brand-accent'}`}>
+        <Calendar size={18} />
       </span>
 
-      <span
-        className={`text-base font-bold tracking-tight tabular-nums ${
-          isPlaceholder ? 'text-brand-text-muted/60' : 'text-brand-primary'
-        }`}
-      >
-        {display}
-      </span>
+      <div className="flex flex-col min-w-0 flex-1">
+        <span className="text-[10px] uppercase text-brand-text-muted font-bold tracking-[0.09em]">
+          {label}
+        </span>
+        <span
+          className={`text-[17px] font-bold tracking-tight tabular-nums ${
+            isPlaceholder ? 'text-slate-300' : 'text-brand-primary'
+          }`}
+        >
+          {display}
+        </span>
+      </div>
 
       {/* Transparent native date input drives the calendar picker */}
       <input

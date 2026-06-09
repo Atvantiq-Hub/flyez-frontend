@@ -105,11 +105,11 @@ export default function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <a 
+          <a
             href="tel:1800-521-4263"
-            className="flex items-center gap-4 px-9 py-4 bg-gradient-to-r from-brand-orange to-brand-orange-hover text-white rounded-2xl shadow-[0_4px_20px_rgba(255,92,0,0.35)] hover:shadow-[0_15px_35px_rgba(255,92,0,0.55)] border border-white/15 transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02]"
+            className="flex items-center gap-3.5 px-9 py-4 bg-gradient-to-r from-brand-orange to-brand-orange-hover text-white rounded-2xl shadow-[0_4px_20px_rgba(255,92,0,0.35)] hover:shadow-[0_15px_35px_rgba(255,92,0,0.55)] border border-white/15 transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02]"
           >
-            <motion.div 
+            <motion.div
               animate={{
                 boxShadow: [
                   "0 0 0 0 rgba(255, 255, 255, 0.4)",
@@ -127,8 +127,8 @@ export default function Hero() {
               <Phone size={16} className="fill-current text-white" />
             </motion.div>
             <div className="flex flex-col items-start text-left">
-              <span className="text-[10px] text-white/80 uppercase tracking-widest font-extrabold leading-none">Call 24/7 Toll-Free</span>
-              <span className="text-2xl font-display font-black leading-none mt-1 tracking-tight">1800-521-4263</span>
+              <span className="text-[10px] text-white/80 uppercase tracking-widest font-extrabold leading-none">Travel Desk · 24/7</span>
+              <span className="text-lg font-ui font-black leading-tight mt-1 tracking-tight">Speak to a Desk Agent</span>
             </div>
           </a>
         </motion.div>

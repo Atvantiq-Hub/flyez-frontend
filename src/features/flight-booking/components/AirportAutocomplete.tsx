@@ -93,19 +93,19 @@ export default function AirportAutocomplete({
   return (
     <div ref={wrapperRef} className="relative w-full">
       {/* Label and input container */}
-      <div 
-        className={`flex flex-col py-3 px-4 bg-white rounded-md cursor-text transition-all duration-350 shadow-sm border ${
-          isOpen ? 'border-brand-accent shadow-[0_0_25px_rgba(37,99,235,0.3)]' : 'border-brand-border'
-        }`}
+      <div
+        className={`search-input-capsule cursor-text ${isOpen ? 'is-active' : ''}`}
         onClick={() => setIsOpen(true)}
       >
-        <span className="text-[11px] uppercase text-brand-text-muted font-semibold flex items-center gap-1 mb-1">
-          {isOrigin ? <PlaneTakeoff size={12} className="text-brand-accent" /> : <PlaneLanding size={12} className="text-brand-orange" />}
-          {label}
+        <span className={`field-icon-chip ${isOrigin ? 'bg-brand-accent/10 text-brand-accent' : 'bg-brand-orange/10 text-brand-orange'}`}>
+          {isOrigin ? <PlaneTakeoff size={18} /> : <PlaneLanding size={18} />}
         </span>
-        <div className="flex items-center gap-2">
-          <input 
-            type="text" 
+        <div className="flex flex-col min-w-0 flex-1">
+          <span className="text-[10px] uppercase text-brand-text-muted font-bold tracking-[0.09em]">
+            {label}
+          </span>
+          <input
+            type="text"
             placeholder={placeholder}
             value={query}
             onChange={(e) => {
@@ -113,29 +113,29 @@ export default function AirportAutocomplete({
               setIsOpen(true);
             }}
             onFocus={() => setIsOpen(true)}
-            className="border-none outline-none w-full text-base font-semibold text-brand-primary bg-transparent"
+            className="border-none outline-none w-full text-[17px] font-bold text-brand-primary bg-transparent placeholder:text-slate-300 placeholder:font-semibold placeholder:text-sm"
           />
-          {query && (
-            <button 
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                setQuery('');
-                onSelect('', '');
-              }}
-              className="text-brand-text-muted"
-            >
-              <X size={16} />
-            </button>
-          )}
         </div>
+        {query && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setQuery('');
+              onSelect('', '');
+            }}
+            className="text-brand-text-muted hover:text-brand-primary transition-colors shrink-0"
+          >
+            <X size={16} />
+          </button>
+        )}
       </div>
 
       {/* Suggestion Dropdown Panel */}
       {isOpen && (suggestionsHtml || isLoading) && (
         <div 
           onClick={handleSuggestionClick}
-          className="absolute top-[calc(100%+6px)] left-0 w-full max-h-[260px] overflow-y-auto bg-white rounded-md shadow-lg border border-slate-200/80 z-[999] py-2 animate-[fadeIn_0.2s_ease]"
+          className="booking-popover absolute top-[calc(100%+8px)] left-0 w-full max-h-[260px] overflow-y-auto bg-white z-[999] py-2 animate-[fadeIn_0.2s_ease]"
         >
           {isLoading ? (
             <div className="py-4 text-center text-brand-text-muted text-sm flex items-center justify-center gap-2">
