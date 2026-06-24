@@ -41,9 +41,6 @@ export default function Packages() {
         
         {/* Title */}
         <div className="text-center mb-16">
-          <span className="text-xs font-extrabold text-brand-orange uppercase tracking-widest inline-block mb-2.5">
-            Popular Hub Destinations
-          </span>
           <h2 className="text-4xl font-display font-black text-brand-primary dark:text-white">
             Popular Holiday Packages
           </h2>

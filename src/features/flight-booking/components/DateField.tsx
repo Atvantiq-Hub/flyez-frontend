@@ -61,7 +61,14 @@ export default function DateField({
         value={value}
         min={min}
         required={required}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => {
+          const selectedVal = e.target.value;
+          if (min && selectedVal && selectedVal < min) {
+            onChange(min);
+          } else {
+            onChange(selectedVal);
+          }
+        }}
         onClick={(e) => {
           // Open the OS calendar when clicking anywhere on the capsule
           try {

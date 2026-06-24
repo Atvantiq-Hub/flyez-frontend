@@ -51,8 +51,18 @@ export default function FlightSearchForm() {
     handleSwap
   } = useFlightSearchForm();
 
+  const [todayDate, setTodayDate] = React.useState<string>('');
+
+  React.useEffect(() => {
+    const d = new Date();
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    setTodayDate(`${year}-${month}-${day}`);
+  }, []);
+
   return (
-    <div className="glass-card animate-slide-up rounded-2xl p-7 max-w-[1100px] -mt-15 mx-auto relative z-10">
+    <div className="glass-card animate-slide-up rounded-2xl p-7 max-w-[920px] -mt-15 mx-auto relative z-10">
       <form onSubmit={handleSearchSubmit}>
         {/* Validation Errors banner */}
         {validationError && (
@@ -61,6 +71,31 @@ export default function FlightSearchForm() {
             {validationError}
           </div>
         )}
+
+        {/* Trip Type Tabs (Moved to top) */}
+        <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-lg w-fit mb-5">
+          {[
+            { id: 'round', label: 'Round Trip' },
+            { id: 'one', label: 'One Way' },
+            { id: 'multicity', label: 'Multi-City' }
+          ].map(tab => (
+            <button
+              key={tab.id}
+              type="button"
+              onClick={() => {
+                setTripType(tab.id as 'round' | 'one' | 'multicity');
+                setValidationError(null);
+              }}
+              className={`py-1.5 px-4 rounded-md text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
+                tripType === tab.id
+                  ? 'bg-white dark:bg-slate-700 shadow-[0_2px_8px_rgba(11,26,48,0.08)] text-brand-accent dark:text-white'
+                  : 'bg-transparent text-brand-text-muted hover:text-brand-primary dark:hover:text-white'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
 
         {/* Standard Search Fields (Round trip & One way) */}
         {tripType !== 'multicity' && (
@@ -139,7 +174,7 @@ export default function FlightSearchForm() {
               label="Depart"
               value={departDate}
               onChange={setDepartDate}
-              min={new Date().toISOString().split('T')[0]}
+              min={todayDate}
               required
               accentClass="text-brand-accent"
             />
@@ -150,7 +185,7 @@ export default function FlightSearchForm() {
                 label="Return"
                 value={returnDate}
                 onChange={setReturnDate}
-                min={departDate || new Date().toISOString().split('T')[0]}
+                min={departDate || todayDate}
                 required
                 accentClass="text-brand-orange"
               />
@@ -208,7 +243,7 @@ export default function FlightSearchForm() {
                   label="Depart Date"
                   value={flight.date}
                   onChange={(v) => updateMultiFlight(index, 'date', v)}
-                  min={new Date().toISOString().split('T')[0]}
+                  min={todayDate}
                   required
                   accentClass="text-brand-accent"
                 />
@@ -257,33 +292,8 @@ export default function FlightSearchForm() {
           </div>
         )}
 
-        {/* Booking Filters — placed below the search bar */}
-        <div className="flex flex-wrap justify-between items-center gap-4 mt-6 border-t border-slate-300 dark:border-gray-800/80 pt-6">
-          {/* Trip Type Tabs */}
-          <div className="flex bg-slate-100 p-1 rounded-lg">
-            {[
-              { id: 'round', label: 'Round Trip' },
-              { id: 'one', label: 'One Way' },
-              { id: 'multicity', label: 'Multi-City' }
-            ].map(tab => (
-              <button
-                key={tab.id}
-                type="button"
-                onClick={() => {
-                  setTripType(tab.id as 'round' | 'one' | 'multicity');
-                  setValidationError(null);
-                }}
-                className={`py-2 px-4 rounded-md text-sm font-semibold transition-all duration-200 ${
-                  tripType === tab.id
-                    ? 'bg-white shadow-[0_2px_8px_rgba(11,26,48,0.08)] text-brand-accent'
-                    : 'bg-transparent text-brand-text-muted hover:text-brand-primary'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-
+        {/* Booking Filters & Search Submit — placed below the search inputs */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-6 border-t border-slate-200 dark:border-slate-800/80 pt-6">
           {/* Class & Airline Dropdowns */}
           <div className="flex flex-wrap items-center gap-4">
             <div className="flex items-center gap-2">
@@ -291,7 +301,7 @@ export default function FlightSearchForm() {
               <select
                 value={cabin}
                 onChange={(e) => setCabin(e.target.value)}
-                className="booking-select text-sm text-brand-primary"
+                className="booking-select text-sm text-brand-primary dark:text-white"
               >
                 <option value="E">Economy</option>
                 <option value="B">Business</option>
@@ -305,7 +315,7 @@ export default function FlightSearchForm() {
               <select
                 value={preferredAirline}
                 onChange={(e) => setPreferredAirline(e.target.value)}
-                className="booking-select text-sm text-brand-primary"
+                className="booking-select text-sm text-brand-primary dark:text-white"
               >
                 <option value="">All Airlines</option>
                 <option value="AA">American Airlines (AA)</option>
@@ -319,38 +329,37 @@ export default function FlightSearchForm() {
               </select>
             </div>
           </div>
-        </div>
 
-        {/* Travel Preferences Checklist & Search Submit Button */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mt-6 pt-2">
-          <div className="flex flex-wrap gap-x-6 gap-y-3">
-            <label className="flex items-center gap-2 cursor-pointer text-sm font-semibold text-brand-text-muted select-none">
-              <input 
-                type="checkbox" 
-                checked={directFlights} 
-                onChange={(e) => setDirectFlights(e.target.checked)}
-                className="w-[18px] h-[18px] cursor-pointer accent-brand-accent"
-              />
-              Direct flights only
-            </label>
-
-            <label className="flex items-center gap-2 cursor-pointer text-sm font-semibold text-brand-text-muted select-none">
-              <input 
-                type="checkbox" 
-                checked={flexibleDates} 
-                onChange={(e) => setFlexibleDates(e.target.checked)}
-                className="w-[18px] h-[18px] cursor-pointer accent-brand-accent"
-              />
-              My dates are flexible (±3 Days)
-            </label>
-          </div>
-
+          {/* Search Button */}
           <button
             type="submit"
-            className="py-4 px-10 rounded-xl bg-gradient-to-r from-brand-orange to-brand-orange-hover text-white text-base font-bold flex items-center justify-center gap-2.5 shadow-[0_8px_24px_-6px_rgba(255,92,0,0.5)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_32px_-8px_rgba(255,92,0,0.65)] w-full lg:max-w-[240px] cursor-pointer"
+            className="py-3 px-8 rounded-xl bg-brand-orange hover:bg-brand-orange-hover text-white text-sm font-bold flex items-center justify-center gap-2 shadow-[0_4px_12px_rgba(255,92,0,0.3)] transition-all duration-200 hover:-translate-y-0.5 cursor-pointer sm:max-w-[200px]"
           >
-            <Search size={18} /> Search Flights
+            <Search size={16} /> Search Flights
           </button>
+        </div>
+
+        {/* Travel Preferences Checklist */}
+        <div className="flex flex-wrap gap-x-6 gap-y-2 mt-4 text-xs font-semibold text-brand-text-muted">
+          <label className="flex items-center gap-2 cursor-pointer select-none">
+            <input 
+              type="checkbox" 
+              checked={directFlights} 
+              onChange={(e) => setDirectFlights(e.target.checked)}
+              className="w-4 h-4 cursor-pointer accent-brand-accent"
+            />
+            Direct flights only
+          </label>
+
+          <label className="flex items-center gap-2 cursor-pointer select-none">
+            <input 
+              type="checkbox" 
+              checked={flexibleDates} 
+              onChange={(e) => setFlexibleDates(e.target.checked)}
+              className="w-4 h-4 cursor-pointer accent-brand-accent"
+            />
+            My dates are flexible (±3 Days)
+          </label>
         </div>
 
         {/* Inline Hot Line Promo */}

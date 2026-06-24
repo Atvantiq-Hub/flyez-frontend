@@ -20,37 +20,37 @@ export default function Header() {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
-    { name: "Privacy Policy", href: "/privacy-policy" },
-    { name: "FAQ", href: "/faq" },
-    { name: "Contact Us", href: "/contact" }
+    { name: "Business/First Class", href: "/business-first-class" },
+    { name: "News & Insights", href: "/news-insights" },
+    { name: "Events", href: "/events" },
+    { name: "Testimonials", href: "/testimonials" },
+    { name: "Talk to Us", href: "/contact" }
   ];
 
   return (
     <header
-      className={`sticky top-0 z-[1000] py-4 transition-all duration-350 font-ui ${
+      className={`w-full py-4 transition-all duration-350 font-ui ${
         isSticky
           ? 'bg-white/92 backdrop-blur-md border-b border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(11,26,48,0.05)]'
           : 'bg-white border-b border-slate-100'
       }`}
     >
-      <div className="premium-container flex items-center justify-between">
+      <div className="premium-container flex items-center gap-10 lg:gap-14">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2">
-          <div className="w-11 h-11 flex items-center justify-center">
-            <svg width="38" height="38" viewBox="35 18 38 42" fill="none">
-              {/* Blue "F" + Top Swoop */}
-              <path d="M38 58 L38 37 C38 27, 48 22, 70 20 C60 26, 45 32, 43 37 L43 43 L57 43 L52 48 L43 48 L43 53 Z" fill="#2563eb" />
-              {/* Orange Feathers */}
-              <path d="M45 35.5 C50 35.5, 58 33, 71 23 C63 29, 56 32, 54 34 C58 34, 62 34, 66 34 C58 38, 50 40, 45 40.5 Z" fill="#ff5c00" />
-            </svg>
-          </div>
-          <span className="text-2xl font-[800] font-ui tracking-tight text-brand-primary">
+        <a href="/" className="flex items-center gap-2 group">
+          <svg width="34" height="34" viewBox="34 18 38 42" fill="none" className="transition-transform duration-300 group-hover:scale-105 group-hover:rotate-3 shrink-0">
+            {/* Blue "F" + Top Swoop */}
+            <path d="M38 58 L38 37 C38 27, 48 22, 70 20 C60 26, 45 32, 43 37 L43 43 L57 43 L52 48 L43 48 L43 53 Z" fill="#2563eb" />
+            {/* Orange Feathers */}
+            <path d="M45 35.5 C50 35.5, 58 33, 71 23 C63 29, 56 32, 54 34 C58 34, 62 34, 66 34 C58 38, 50 40, 45 40.5 Z" fill="#ff5c00" />
+          </svg>
+          <span className="text-2xl font-[900] font-ui tracking-tight text-brand-primary">
             Fly<span className="text-brand-orange">Ez</span>
           </span>
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-7">
+        <nav className="hidden lg:flex items-center">
           <ul className="flex gap-7 text-[15px] font-semibold">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
@@ -73,7 +73,8 @@ export default function Header() {
         </nav>
 
         {/* Action Widgets */}
-        <div className="flex items-center gap-5">
+        <div className="ml-auto flex items-center gap-5">
+
 
 
           {/* SignIn CTA */}

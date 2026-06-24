@@ -35,19 +35,6 @@ export default function SpecialOffers() {
         
         {/* Title */}
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-          <span 
-            style={{ 
-              fontSize: '11px', 
-              fontWeight: 800, 
-              color: 'var(--color-orange)', 
-              textTransform: 'uppercase', 
-              letterSpacing: '2px',
-              display: 'inline-block',
-              marginBottom: '10px'
-            }}
-          >
-            Hot Offers
-          </span>
           <h2 style={{ fontSize: '38px', fontFamily: 'var(--font-display)', marginBottom: '12px', color: 'var(--color-primary)', fontWeight: 800 }}>Special Offers</h2>
           <p style={{ color: 'var(--color-text-muted)', fontSize: '16px', maxWidth: '600px', margin: '0 auto' }}>These popular flight selections have a lot to offer. Search and book now!</p>
         </div>

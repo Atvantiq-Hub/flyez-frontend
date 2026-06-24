@@ -77,12 +77,12 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-4xl sm:text-5xl md:text-6xl font-display font-black text-white mb-10 leading-[1.08] tracking-tight max-w-4xl"
+          className="text-4xl sm:text-5xl md:text-6xl font-display italic font-black text-white mb-10 leading-[1.08] tracking-tight max-w-4xl"
           style={{ 
             textShadow: '0 4px 30px rgba(7, 14, 27, 0.95), 0 2px 8px rgba(7, 14, 27, 0.7)' 
           }}
         >
-          Unbeatable Flight Deals & <br/>Secret Agent Rates
+          Unbeatable Flight Deals
         </motion.h1>
 
         {/* Dialing CTA Button */}
@@ -93,7 +93,7 @@ export default function Hero() {
         >
           <a
             href="tel:1800-521-4263"
-            className="flex items-center gap-3.5 px-9 py-4 bg-gradient-to-r from-brand-orange to-brand-orange-hover text-white rounded-2xl shadow-[0_4px_20px_rgba(255,92,0,0.35)] hover:shadow-[0_15px_35px_rgba(255,92,0,0.55)] border border-white/15 transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02]"
+            className="flex items-center gap-3.5 px-9 py-4 bg-brand-orange hover:bg-brand-orange-hover text-white rounded-2xl shadow-[0_4px_20px_rgba(255,92,0,0.35)] hover:shadow-[0_15px_35px_rgba(255,92,0,0.55)] border border-white/15 transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02]"
           >
             <motion.div
               animate={{

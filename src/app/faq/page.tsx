@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PromoAlert from '@/components/PromoAlert';
+import Ticker from '@/features/marketing/components/Ticker';
 import dynamic from 'next/dynamic';
 const TravelGptChat = dynamic(() => import('@/features/chat-ai/components/TravelGptChat'), { ssr: false });
 
@@ -822,8 +823,12 @@ export default function FAQPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-brand-bg-light dark:bg-brand-primary">
-      <PromoAlert />
-      <Header />
+      {/* Sticky Header Bar (Promo Alert + Navigation) */}
+      <div className="sticky top-0 z-[1000] flex flex-col">
+        <PromoAlert />
+        <Header />
+        <Ticker />
+      </div>
 
       {/* Hero Banner */}
       <section className="relative py-28 flex items-center justify-center text-center overflow-hidden bg-brand-primary">

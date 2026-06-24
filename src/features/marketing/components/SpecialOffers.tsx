@@ -47,9 +47,6 @@ export default function SpecialOffers() {
         
         {/* Title */}
         <div className="text-center mb-16">
-          <span className="text-xs font-extrabold text-brand-orange uppercase tracking-widest inline-block mb-2.5">
-            Hot Offers
-          </span>
           <h2 className="text-4xl font-display font-black text-brand-primary dark:text-white mb-3">
             Special Offers
           </h2>

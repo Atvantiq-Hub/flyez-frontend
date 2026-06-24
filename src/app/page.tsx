@@ -13,7 +13,6 @@ const Packages = dynamic(() => import('@/features/marketing/components/Packages'
 const TrendingDeals = dynamic(() => import('@/features/marketing/components/TrendingDeals'), { ssr: true });
 const AirlinePartners = dynamic(() => import('@/features/marketing/components/AirlinePartners'), { ssr: true });
 const LuxuryBanner = dynamic(() => import('@/features/marketing/components/LuxuryBanner'), { ssr: true });
-const Festivals = dynamic(() => import('@/features/marketing/components/Festivals'), { ssr: true });
 const SubscriptionBanner = dynamic(() => import('@/features/marketing/components/SubscriptionBanner'), { ssr: true });
 const Testimonials = dynamic(() => import('@/features/marketing/components/Testimonials'), { ssr: true });
 
@@ -23,11 +22,17 @@ const Ticker = dynamic(() => import('@/features/marketing/components/Ticker'), {
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-brand-bg-light dark:bg-brand-primary">
-      {/* Discount Promo Code Alert Banner */}
-      <PromoAlert />
+      {/* Sticky Header Bar (Promo Alert + Navigation) */}
+      <div className="sticky top-0 z-[1000] flex flex-col">
+        {/* Discount Promo Code Alert Banner */}
+        <PromoAlert />
 
-      {/* Premium Header */}
-      <Header />
+        {/* Premium Header */}
+        <Header />
+
+        {/* Floating Text Marquee Ticker */}
+        <Ticker />
+      </div>
 
       {/* Hero Section */}
       <Hero />
@@ -37,11 +42,6 @@ export default function Home() {
         {/* Overlapping Flight Search Form Container */}
         <div className="premium-container relative z-20 -mt-20 md:-mt-28 lg:-mt-36">
           <FlightSearchForm />
-        </div>
-
-        {/* Floating Text Marquee Ticker (padding-top keeps clear space below the booking card) */}
-        <div className="pt-8 md:pt-10 mb-14">
-          <Ticker />
         </div>
 
         {/* Special Offers Grid & Call Banner */}
@@ -59,8 +59,6 @@ export default function Home() {
         {/* Luxury Business Class Callout Banner */}
         <LuxuryBanner />
 
-        {/* Festivals & Events Section */}
-        <Festivals />
 
         {/* Subscription Newsletter Panel */}
         <SubscriptionBanner />

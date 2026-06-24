@@ -30,19 +30,6 @@ export default function Packages() {
         
         {/* Title */}
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-          <span 
-            style={{ 
-              fontSize: '11px', 
-              fontWeight: 800, 
-              color: 'var(--color-orange)', 
-              textTransform: 'uppercase', 
-              letterSpacing: '2px',
-              display: 'inline-block',
-              marginBottom: '10px'
-            }}
-          >
-            Popular Hub Destinantions
-          </span>
           <h2 style={{ fontSize: '38px', fontFamily: 'var(--font-display)', color: 'var(--color-primary)', fontWeight: 800 }}>Popular Holiday Packages</h2>
           <p style={{ color: 'var(--color-text-muted)', fontSize: '16px', maxWidth: '600px', margin: '0 auto' }}>Explore exclusive flight options and consolidator rates to our most requested cities.</p>
         </div>

@@ -29,6 +29,18 @@ export function useFlightSearchForm() {
         store.setValidationError('Please select a departure date.');
         return;
       }
+      
+      const today = new Date();
+      today.setHours(0,0,0,0);
+      const selectedDepart = new Date(store.departDate);
+      selectedDepart.setMinutes(selectedDepart.getMinutes() + selectedDepart.getTimezoneOffset());
+      selectedDepart.setHours(0,0,0,0);
+      
+      if (selectedDepart < today) {
+        store.setValidationError('Departure date cannot be in the past.');
+        return;
+      }
+
       if (store.tripType === 'round' && !store.returnDate) {
         store.setValidationError('Please select a return date.');
         return;

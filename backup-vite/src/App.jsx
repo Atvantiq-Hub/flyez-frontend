@@ -8,7 +8,6 @@ import WhyBookWithUs from './components/WhyBookWithUs';
 import TrendingDeals from './components/TrendingDeals';
 import Packages from './components/Packages';
 import LuxuryBanner from './components/LuxuryBanner';
-import Festivals from './components/Festivals';
 import SubscriptionBanner from './components/SubscriptionBanner';
 import Testimonials from './components/Testimonials';
 import AirlinePartners from './components/AirlinePartners';
@@ -161,8 +160,6 @@ function App() {
         {/* Luxury Business Class Callout */}
         <LuxuryBanner />
 
-        {/* Festivals & Events Section */}
-        <Festivals />
 
         {/* Subscription Newsletter panel */}
         <SubscriptionBanner />
