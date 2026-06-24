@@ -7,7 +7,7 @@ export default function Hero() {
   const [videoLoaded, setVideoLoaded] = useState(false);
 
   return (
-    <section className="relative pt-24 pb-28 md:pt-28 md:pb-36 flex items-center justify-center text-center overflow-hidden bg-brand-primary">
+    <section className="relative pt-28 pb-36 md:pt-36 md:pb-48 lg:pt-40 lg:pb-56 flex items-center justify-center text-center overflow-hidden bg-brand-primary">
       {/* Slowly zooming placeholder — the video's own first frame, so there is
           no mismatched image flash before playback begins */}
       <motion.div
