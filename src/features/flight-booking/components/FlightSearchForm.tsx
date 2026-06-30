@@ -126,7 +126,7 @@ export default function FlightSearchForm({ restrictToBusinessFirst = false }: Fl
         )}
 
         {/* Trip Type Tabs (Moved to top) */}
-        <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-lg w-fit mb-4">
+        <div className="flex bg-black/15 border border-white/5 p-1 rounded-lg w-fit mb-4">
           {[
             { id: 'round', label: 'Round Trip' },
             { id: 'one', label: 'One Way' },
@@ -141,8 +141,8 @@ export default function FlightSearchForm({ restrictToBusinessFirst = false }: Fl
               }}
               className={`py-1.5 px-4 rounded-md text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                 tripType === tab.id
-                  ? 'bg-white dark:bg-slate-700 shadow-[0_2px_8px_rgba(11,26,48,0.08)] text-brand-accent dark:text-white'
-                  : 'bg-transparent text-brand-text-muted hover:text-brand-primary dark:hover:text-white'
+                  ? 'bg-white shadow-[0_2px_8px_rgba(11,26,48,0.08)] text-black'
+                  : 'bg-transparent text-white/70 hover:text-white'
               }`}
             >
               {tab.label}
@@ -200,7 +200,7 @@ export default function FlightSearchForm({ restrictToBusinessFirst = false }: Fl
               {/* Checkboxes row */}
               <div className="flex w-full flex-col lg:flex-row gap-4 lg:gap-0 mt-2">
                 <div className="flex-1">
-                  <label className="flex items-center gap-1.5 mt-1 ml-1 cursor-pointer text-xs font-semibold text-brand-text-muted select-none">
+                  <label className="flex items-center gap-1.5 mt-1 ml-1 cursor-pointer text-xs font-semibold text-slate-200 hover:text-white select-none">
                     <input 
                       type="checkbox" 
                       checked={nearOrigin}
@@ -211,7 +211,7 @@ export default function FlightSearchForm({ restrictToBusinessFirst = false }: Fl
                   </label>
                 </div>
                 <div className="flex-1">
-                  <label className="flex items-center gap-1.5 mt-1 ml-1 cursor-pointer text-xs font-semibold text-brand-text-muted select-none">
+                  <label className="flex items-center gap-1.5 mt-1 ml-1 cursor-pointer text-xs font-semibold text-slate-200 hover:text-white select-none">
                     <input 
                       type="checkbox" 
                       checked={nearDest}
@@ -234,7 +234,7 @@ export default function FlightSearchForm({ restrictToBusinessFirst = false }: Fl
                 required
                 accentClass="text-brand-accent"
               />
-              <label className="flex items-center gap-1.5 mt-3 ml-1 cursor-pointer text-xs font-semibold text-brand-text-muted select-none">
+              <label className="flex items-center gap-1.5 mt-3 ml-1 cursor-pointer text-xs font-semibold text-slate-200 hover:text-white select-none">
                 <input 
                   type="checkbox" 
                   checked={directFlights} 
@@ -256,7 +256,7 @@ export default function FlightSearchForm({ restrictToBusinessFirst = false }: Fl
                   required
                   accentClass="text-brand-orange"
                 />
-                <label className="flex items-center gap-1.5 mt-3 ml-1 cursor-pointer text-xs font-semibold text-brand-text-muted select-none">
+                 <label className="flex items-center gap-1.5 mt-3 ml-1 cursor-pointer text-xs font-semibold text-slate-200 hover:text-white select-none">
                   <input 
                     type="checkbox" 
                     checked={flexibleDates} 
@@ -281,7 +281,7 @@ export default function FlightSearchForm({ restrictToBusinessFirst = false }: Fl
                 setInfants={setInfants}
               />
               {tripType === 'one' && (
-                <label className="flex items-center gap-1.5 mt-3 ml-1 cursor-pointer text-xs font-semibold text-brand-text-muted select-none">
+                <label className="flex items-center gap-1.5 mt-3 ml-1 cursor-pointer text-xs font-semibold text-slate-200 hover:text-white select-none">
                   <input 
                     type="checkbox" 
                     checked={flexibleDates} 
@@ -392,11 +392,11 @@ export default function FlightSearchForm({ restrictToBusinessFirst = false }: Fl
         )}
 
         {/* Booking Filters & Search Submit — placed below the search inputs */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mt-3 border-t border-slate-200 dark:border-slate-800/80 pt-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mt-3 border-t border-white/10 dark:border-slate-800/80 pt-3">
           {/* Class & Airline Dropdowns */}
           <div className="flex flex-wrap items-center gap-4">
             <div className="flex items-center gap-2 relative" ref={cabinRef}>
-              <span className="text-xs font-semibold text-brand-text-muted">Class:</span>
+              <span className="text-xs font-semibold text-white/80">Class:</span>
               <button
                 type="button"
                 onClick={() => {
@@ -427,7 +427,7 @@ export default function FlightSearchForm({ restrictToBusinessFirst = false }: Fl
             </div>
 
             <div className="flex items-center gap-2 relative" ref={airlineRef}>
-              <span className="text-xs font-semibold text-brand-text-muted">Airline:</span>
+              <span className="text-xs font-semibold text-white/80">Airline:</span>
               <button
                 type="button"
                 onClick={() => {

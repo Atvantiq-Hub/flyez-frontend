@@ -167,16 +167,16 @@
 }
 
 @utility glass-card {
-  background: rgba(255, 255, 255, 0.78) !important;
-  backdrop-filter: blur(20px) saturate(190%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(190%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.45) !important;
-  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.06), 0 2px 4px 0 rgba(0, 0, 0, 0.02) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(25px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.15) !important;
 }
 .dark .glass-card {
-  background: rgba(15, 23, 42, 0.65) !important;
+  background: rgba(15, 23, 42, 0.45) !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3) !important;
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4) !important;
 }
 
 @utility tp-star {
@@ -210,20 +210,26 @@
   height: 42px;
   padding: 0 10px;
   border-radius: 8px;
-  background: #ffffff;
-  border: 1.5px solid #000000;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
 }
 .search-input-capsule:hover {
-  border-color: #000000;
+  border-color: rgba(0, 0, 0, 0.18);
+  background: rgba(255, 255, 255, 0.95);
   transform: translateY(-0.5px);
-  box-shadow: 0 6px 14px -8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 14px -8px rgba(0, 0, 0, 0.1);
 }
 .search-input-capsule:focus-within,
 .search-input-capsule.is-active {
   border-color: #ff5c00;
+  background: #ffffff;
   box-shadow: 0 0 0 3px rgba(255, 92, 0, 0.16);
+}
+.dark .search-input-capsule {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Leading tinted icon chip inside each booking field */
@@ -253,24 +259,31 @@
   -webkit-appearance: none;
   padding: 6px 28px 6px 12px;
   border-radius: 8px;
-  border: 1.5px solid #000000;
-  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: rgba(255, 255, 255, 0.86);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 9px center;
   font-weight: 600;
   font-size: 13px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
   cursor: pointer;
 }
 .booking-select:hover {
-  border-color: #000000;
+  border-color: rgba(0, 0, 0, 0.18);
+  background-color: rgba(255, 255, 255, 0.95);
 }
 .booking-select:focus {
   outline: none;
-  border-color: #000000;
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.14);
+  border-color: #ff5c00;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 92, 0, 0.16);
+}
+.dark .booking-select {
+  background-color: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
 }
 
 /* Premium dropdown panels (suggestions / passenger popover) */
