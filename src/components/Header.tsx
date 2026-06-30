@@ -45,8 +45,8 @@ export default function Header({ overlay = true }: HeaderProps) {
     <header
       className={`${overlay ? 'fixed top-0 left-0' : ''} w-full z-[1000] transition-all duration-500 font-ui ${
         transparent
-          ? 'py-2.5 bg-slate-950/35 backdrop-blur-md border-b border-white/15 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.6)]'
-          : 'py-2 bg-white/90 backdrop-blur-xl border-b border-slate-200/70 shadow-[0_8px_30px_-12px_rgba(7,14,27,0.12)]'
+          ? 'py-1.5 bg-slate-950/35 backdrop-blur-md border-b border-white/15 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.6)]'
+          : 'py-1.5 bg-white/90 backdrop-blur-xl border-b border-slate-200/70 shadow-[0_8px_30px_-12px_rgba(7,14,27,0.12)]'
       }`}
     >
       {/* Soft top-down sheen inside the bar adds depth without losing the
