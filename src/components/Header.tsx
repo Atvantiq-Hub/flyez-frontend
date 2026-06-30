@@ -45,16 +45,16 @@ export default function Header({ overlay = true }: HeaderProps) {
     <header
       className={`${overlay ? 'fixed top-0 left-0' : ''} w-full z-[1000] transition-all duration-500 font-ui ${
         transparent
-          ? 'py-5 bg-transparent'
+          ? 'py-5 bg-slate-950/35 backdrop-blur-md border-b border-white/15 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.6)]'
           : 'py-3 bg-white/90 backdrop-blur-xl border-b border-slate-200/70 shadow-[0_8px_30px_-12px_rgba(7,14,27,0.12)]'
       }`}
     >
-      {/* Graceful gradient veil — taller than the bar so it fades smoothly
-          below the menu, keeping white nav legible over bright imagery */}
+      {/* Soft top-down sheen inside the bar adds depth without losing the
+          contained, defined-edge "panel" look (vs. fading into nothing) */}
       {transparent && (
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-[170px] bg-gradient-to-b from-black/70 via-black/30 to-transparent"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/25 to-transparent"
         />
       )}
 
