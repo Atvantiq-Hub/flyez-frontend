@@ -21,7 +21,7 @@ export default function Hero() {
           scale: { duration: 8, ease: "easeOut" },
           opacity: { duration: 1.5, ease: "easeOut" }
         }}
-        className="absolute top-0 left-0 right-0 bottom-[52px] bg-cover bg-center z-0"
+        className="absolute inset-0 bg-cover bg-center z-0"
         style={{
           backgroundImage: 'url("/videos/flight-deals-poster.png")'
         }}
@@ -37,7 +37,7 @@ export default function Hero() {
         poster="/videos/flight-deals-poster.png"
         onPlay={() => setVideoLoaded(true)}
         onLoadedData={() => setVideoLoaded(true)}
-        className={`absolute top-0 left-0 right-0 bottom-[52px] w-full h-[calc(100%-52px)] object-cover z-0 transition-opacity duration-[1500ms] ease-out ${
+        className={`absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-[1500ms] ease-out ${
           videoLoaded ? 'opacity-75' : 'opacity-0'
         }`}
       >
@@ -49,15 +49,15 @@ export default function Hero() {
 
       {/* Refined gradient overlay for high image visibility and text readability */}
       <div 
-        className="absolute top-0 left-0 right-0 bottom-[52px] z-1" 
+        className="absolute inset-0 z-1" 
         style={{
           background: 'linear-gradient(to bottom, rgba(7, 14, 27, 0.35) 0%, rgba(7, 14, 27, 0.45) 50%, rgba(7, 14, 27, 0.8) 100%)'
         }}
       />
-      <div className="absolute top-0 left-0 right-0 bottom-[52px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.18),transparent_60%)] z-1" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.18),transparent_60%)] z-1" />
 
       {/* Starry/Dot Grid overlay */}
-      <div className="absolute top-0 left-0 right-0 bottom-[52px] opacity-5 bg-[radial-gradient(circle,#ffffff_1px,transparent_1.5px)] bg-[size:24px_24px] pointer-events-none z-1" />
+      <div className="absolute inset-0 opacity-5 bg-[radial-gradient(circle,#ffffff_1px,transparent_1.5px)] bg-[size:24px_24px] pointer-events-none z-1" />
 
       {/* Top spacer to balance the navigation header bar spacing */}
       <div className="h-2" />

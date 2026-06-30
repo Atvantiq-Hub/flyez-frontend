@@ -71,19 +71,19 @@ export default function BusinessFirstClass() {
           initial={{ scale: 1.08, opacity: 0.45 }}
           animate={{ scale: 1, opacity: 0.6 }}
           transition={{ duration: 6, ease: "easeOut" }}
-          className="absolute top-0 left-0 right-0 bottom-[52px] bg-cover bg-center z-0"
+          className="absolute inset-0 bg-cover bg-center z-0"
           style={{ 
             backgroundImage: 'url("https://images.unsplash.com/photo-1540962351504-03099e0a754b?q=80&w=1600&auto=format&fit=crop")'
           }}
         />
         <div 
-          className="absolute top-0 left-0 right-0 bottom-[52px] z-1" 
+          className="absolute inset-0 z-1" 
           style={{
             background: 'linear-gradient(to bottom, rgba(7, 14, 27, 0.25) 0%, rgba(7, 14, 27, 0.4) 50%, rgba(7, 14, 27, 0.75) 100%)'
           }}
         />
-        <div className="absolute top-0 left-0 right-0 bottom-[52px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.18),transparent_60%)] z-1" />
-        <div className="absolute top-0 left-0 right-0 bottom-[52px] opacity-5 bg-[radial-gradient(circle,#ffffff_1px,transparent_1.5px)] bg-[size:24px_24px] pointer-events-none z-1" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.18),transparent_60%)] z-1" />
+        <div className="absolute inset-0 opacity-5 bg-[radial-gradient(circle,#ffffff_1px,transparent_1.5px)] bg-[size:24px_24px] pointer-events-none z-1" />
 
         {/* Top spacer to balance the navigation header bar spacing */}
         <div className="h-2" />
