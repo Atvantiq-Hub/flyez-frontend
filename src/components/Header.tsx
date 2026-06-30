@@ -54,10 +54,10 @@ export default function Header() {
                 <li key={link.name} className="flex items-center">
                   <a
                     href={link.href}
-                    className={`relative py-2 tracking-[0.01em] transition-colors duration-300 after:absolute after:bottom-0.5 after:left-0 after:h-[1.5px] after:bg-brand-orange after:transition-all after:duration-300 ${
+                    className={`relative py-2 tracking-[0.01em] transition-colors duration-300 ${
                       isActive
-                        ? 'text-brand-primary font-semibold after:w-full'
-                        : 'text-brand-primary/70 font-medium hover:text-brand-primary after:w-0 hover:after:w-full'
+                        ? 'text-brand-primary font-semibold'
+                        : 'text-brand-primary/55 font-medium hover:text-brand-primary'
                     }`}
                   >
                     {link.name}
