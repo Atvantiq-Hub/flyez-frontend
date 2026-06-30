@@ -80,11 +80,11 @@ export default function Header({ overlay = true }: HeaderProps) {
                     className={`relative py-2 tracking-[0.01em] transition-colors duration-300 ${
                       transparent
                         ? isActive
-                          ? 'text-white font-semibold'
-                          : 'text-white/75 font-medium hover:text-white'
+                          ? 'text-white font-semibold hover:text-brand-orange'
+                          : 'text-white font-medium hover:text-brand-orange'
                         : isActive
-                          ? 'text-brand-primary font-semibold'
-                          : 'text-brand-primary/55 font-medium hover:text-brand-primary'
+                          ? 'text-brand-primary font-semibold hover:text-brand-orange'
+                          : 'text-brand-primary/70 font-medium hover:text-brand-orange'
                     }`}
                   >
                     {link.name}
