@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { EB_Garamond, Geist_Mono } from "next/font/google";
+import { EB_Garamond, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 
 // Koursair font: EB Garamond used site-wide (headings, body, header menu, UI).
@@ -9,6 +9,11 @@ const ebGaramond = EB_Garamond({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
@@ -30,7 +35,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${ebGaramond.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${ebGaramond.variable} ${geistMono.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         {children}
