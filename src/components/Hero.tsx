@@ -6,7 +6,7 @@ export default function Hero() {
   const [videoLoaded, setVideoLoaded] = useState(false);
 
   return (
-    <section className="relative min-h-[530px] md:min-h-[590px] lg:min-h-[630px] flex flex-col justify-between py-5 md:py-6 overflow-hidden bg-brand-primary">
+    <section className="relative min-h-[560px] md:min-h-[620px] lg:min-h-[660px] flex flex-col justify-between py-5 md:py-6 overflow-hidden bg-brand-primary">
       {/* Zooming placeholder frame to prevent empty white flash before video plays */}
       <div
         className={`absolute inset-0 bg-cover bg-center z-0 transition-all duration-[4000ms] ease-out ${
