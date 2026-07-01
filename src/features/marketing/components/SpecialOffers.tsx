@@ -18,7 +18,7 @@ export default function SpecialOffers() {
       title: "Choose any Airline, Book Your Ticket",
       subtitle: "Worldwide coverage & custom airline booking plans",
       icon: <Plane size={18} className="text-white" />,
-      image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=600&auto=format&fit=crop",
+      image: "https://flyez.ai/assets/img/backgrounds/1.jpg",
       badge: "Flexible Fares",
       action: "Search Airlines"
     },
@@ -26,7 +26,7 @@ export default function SpecialOffers() {
       title: "Grab Amazing Flight Deals",
       subtitle: "Unpublished airfares direct from offline ticketing desks",
       icon: <Headphones size={18} className="text-white" />,
-      image: "https://images.unsplash.com/photo-1540962351504-03099e0a754b?q=80&w=600&auto=format&fit=crop",
+      image: "https://flyez.ai/assets/img/backgrounds/3.jpg",
       badge: "Exclusive Deals",
       action: "Talk to Specialist"
     },
@@ -34,7 +34,7 @@ export default function SpecialOffers() {
       title: "Up to 70% Discount Fares!",
       subtitle: "Call our agents for special business and group rates",
       icon: <Percent size={18} className="text-white" />,
-      image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600&auto=format&fit=crop",
+      image: "https://flyez.ai/assets/img/backgrounds/2.jpg",
       badge: "Limited Time",
       action: "Call for Discount"
     }
