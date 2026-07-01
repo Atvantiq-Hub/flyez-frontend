@@ -120,7 +120,7 @@ export default function TrendingDeals() {
   };
 
   return (
-    <section className="py-24 bg-[#f8fafc] dark:bg-brand-primary border-t border-b border-stone-200/50">
+    <section className="py-24 bg-[#f1f5f9] dark:bg-brand-primary border-t border-b border-slate-200/50">
       <div className="premium-container">
         
         {/* Title Block */}
@@ -148,7 +148,7 @@ export default function TrendingDeals() {
             <div
               key={idx}
               onClick={() => handleDealClick(deal)}
-              className="relative flex bg-white dark:bg-[#0c182c] border border-stone-200/60 dark:border-gray-800 rounded-3xl min-h-[190px] shadow-[0_8px_30px_rgba(7,14,27,0.02)] hover:shadow-[0_15px_45px_rgba(7,14,27,0.08)] transition-all duration-500 hover:-translate-y-2 cursor-pointer overflow-hidden group"
+              className="relative flex bg-white dark:bg-[#0c182c] border border-slate-200 dark:border-gray-800 rounded-3xl min-h-[190px] shadow-[0_8px_30px_rgba(7,14,27,0.03)] hover:shadow-[0_15px_45px_rgba(7,14,27,0.1)] transition-all duration-500 hover:-translate-y-2 cursor-pointer overflow-hidden group"
             >
               {/* Elegant Top Color Band Tag */}
               <div className="absolute top-0 left-0 right-0 h-1.5" style={{ backgroundColor: deal.color }} />
@@ -204,12 +204,12 @@ export default function TrendingDeals() {
 
               {/* Ticket Coupon Separator (Dashed vertical line + cutout notches) */}
               <div className="relative w-px border-l-2 border-dashed border-stone-200/80 dark:border-gray-800 my-4 shrink-0 z-10">
-                <div className="absolute -top-[27px] -left-2 w-4 h-4 bg-[#f8fafc] dark:bg-brand-primary rounded-full border border-stone-200/60 dark:border-gray-800 border-t-transparent transform rotate-135" />
-                <div className="absolute -bottom-[27px] -left-2 w-4 h-4 bg-[#f8fafc] dark:bg-brand-primary rounded-full border border-stone-200/60 dark:border-gray-800 border-b-transparent transform rotate-135" />
+                <div className="absolute -top-[27px] -left-2 w-4 h-4 bg-[#f1f5f9] dark:bg-brand-primary rounded-full border border-stone-200/60 dark:border-gray-800 border-t-transparent transform rotate-135" />
+                <div className="absolute -bottom-[27px] -left-2 w-4 h-4 bg-[#f1f5f9] dark:bg-brand-primary rounded-full border border-stone-200/60 dark:border-gray-800 border-b-transparent transform rotate-135" />
               </div>
 
               {/* Right Side: Price & Barcode details */}
-              <div className="w-[130px] shrink-0 p-6 pt-7 bg-stone-50/40 dark:bg-black/15 flex flex-col justify-between items-center text-center border-l border-stone-100/50 dark:border-gray-850">
+              <div className="w-[130px] shrink-0 p-6 pt-7 bg-slate-50/70 dark:bg-black/25 flex flex-col justify-between items-center text-center border-l border-slate-100 dark:border-gray-850">
                 
                 {/* Boarding Date */}
                 <div className="flex flex-col">
