@@ -24,6 +24,32 @@ function ConfirmationContent() {
   const total = parseInt(searchParams.get('total') || '420', 10);
   const pnr = searchParams.get('pnr') || 'X7Y9Z2';
 
+  const handleDownloadReceipt = () => {
+    const lines = [
+      'FLYEZ — E-TICKET ITINERARY RECEIPT',
+      '='.repeat(40),
+      `Reservation Reference (PNR): ${pnr}`,
+      `Flight / Sector: ${origin} -> ${destination}`,
+      `Reference: ${flightId}`,
+      `Passenger: ${firstName} ${lastName}`,
+      `Seat Assignment: ${seat}`,
+      `Checked Baggage: ${bags} bag${bags !== '1' ? 's' : ''}`,
+      `Total Paid: $${total}`,
+      '',
+      'Thank you for booking with FlyEz.',
+    ].join('\n');
+
+    const blob = new Blob([lines], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `FlyEz-Itinerary-${pnr}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 font-sans text-brand-text-main">
       <Header overlay={false} />
@@ -117,7 +143,7 @@ function ConfirmationContent() {
               <Printer size={14} /> Print Itinerary
             </button>
             <button
-              onClick={() => alert('Mock PDF Download Triggered Successfully!')}
+              onClick={handleDownloadReceipt}
               className="w-full sm:w-auto px-5 py-2.5 border border-slate-200 hover:border-slate-400 rounded-xl text-xs font-bold text-slate-600 hover:text-brand-primary hover:bg-slate-50 flex items-center justify-center gap-1.5 transition-all cursor-pointer"
             >
               <Download size={14} /> Download Receipt

@@ -24,7 +24,7 @@ export default function About() {
           <span className="text-[10px] font-bold text-brand-orange uppercase tracking-[0.25em] inline-block mb-3">
             THE HERITAGE OF FLIGHT
           </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-medium text-white leading-tight tracking-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-semibold italic text-white leading-tight tracking-tight">
             Bespoke Airfare Brokerage
           </h1>
         </div>
