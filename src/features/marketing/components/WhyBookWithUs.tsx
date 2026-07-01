@@ -37,35 +37,35 @@ export default function WhyBookWithUs() {
       <div className="premium-container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          {/* Left Column: Staggered Overlapping 3-Image Collage */}
-          <div className="lg:col-span-5 relative w-full h-[400px] md:h-[440px] flex items-center justify-center">
+          {/* Left Column: Premium Staggered Fan Deck */}
+          <div className="lg:col-span-5 w-full flex items-center justify-center h-[340px] md:h-[360px] relative select-none">
             
-            {/* Small Overlapping Card 1: Top-Left */}
-            <div className="absolute top-2 left-0 w-[110px] md:w-[130px] h-[110px] md:h-[130px] rounded-2xl overflow-hidden border-[5px] border-[#fafaf9] shadow-[0_8px_20px_rgba(7,14,27,0.1)] z-20 transition-all duration-500 hover:scale-108 hover:-rotate-3 cursor-pointer">
+            {/* Left Card - Wings / Sky */}
+            <div className="w-[30%] h-[240px] md:h-[260px] rounded-2xl overflow-hidden border-4 border-[#fafaf9] shadow-lg -rotate-6 translate-x-6 mt-6 transition-all duration-500 hover:rotate-0 hover:scale-105 hover:z-20 hover:shadow-2xl group cursor-pointer shrink-0">
               <img
                 src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=400&auto=format&fit=crop"
-                alt="Aircraft flying detail"
-                className="w-full h-full object-cover"
+                alt="Premium flight wing sunset"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
               />
             </div>
 
-            {/* Main Big Image Card: Center */}
-            <div className="w-[78%] h-[340px] md:h-[380px] rounded-3xl overflow-hidden shadow-[0_12px_32px_rgba(7,14,27,0.08)] border border-stone-200/60 z-10 transition-transform duration-500 hover:scale-[1.015] cursor-pointer">
+            {/* Center Card - Luxury Flight Cabin Suite */}
+            <div className="w-[48%] h-[300px] md:h-[320px] rounded-3xl overflow-hidden border-4 border-[#fafaf9] shadow-2xl z-10 transition-all duration-500 hover:scale-105 hover:shadow-2xl group cursor-pointer shrink-0">
               <img
                 src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?q=80&w=800&auto=format&fit=crop"
-                alt="Luxury aircraft passenger suite"
-                className="w-full h-full object-cover"
+                alt="Luxury aircraft private cabin suite"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
               />
             </div>
 
-            {/* Small Overlapping Card 2: Bottom-Right */}
-            <div className="absolute bottom-2 right-0 w-[130px] md:w-[150px] h-[100px] md:h-[120px] rounded-2xl overflow-hidden border-[5px] border-[#fafaf9] shadow-[0_10px_25px_rgba(7,14,27,0.15)] z-20 transition-all duration-500 hover:scale-108 hover:rotate-3 cursor-pointer">
+            {/* Right Card - 5-Star VIP Airport Lounge */}
+            <div className="w-[30%] h-[240px] md:h-[260px] rounded-2xl overflow-hidden border-4 border-[#fafaf9] shadow-lg rotate-6 -translate-x-6 mt-6 transition-all duration-500 hover:rotate-0 hover:scale-105 hover:z-20 hover:shadow-2xl group cursor-pointer shrink-0">
               <img
-                src="https://images.unsplash.com/photo-1507395290247-36707c7fec36?q=80&w=400&auto=format&fit=crop"
-                alt="VIP lounge area detail"
-                className="w-full h-full object-cover"
+                src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=400&auto=format&fit=crop"
+                alt="Luxury VIP transit lounge"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
               />
             </div>
