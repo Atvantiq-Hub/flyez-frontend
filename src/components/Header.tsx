@@ -38,7 +38,7 @@ export default function Header({ overlay = true }: HeaderProps) {
     { name: "News", href: "/news-insights" },
     { name: "Events", href: "/events" },
     { name: "Testimonials", href: "/testimonials" },
-    { name: "Contact", href: "/contact" }
+    { name: "Talk to Us", href: "/contact" }
   ];
 
   return (
