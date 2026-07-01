@@ -25,6 +25,7 @@ export default function BusinessFirstClass() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -66,54 +67,87 @@ export default function BusinessFirstClass() {
       </div>
 
       {/* Hero Banner */}
-      <section className="relative min-h-[calc(100vh-72px)] flex flex-col justify-between py-5 md:py-6 overflow-hidden bg-brand-primary">
+      <section className="relative min-h-[530px] md:min-h-[590px] lg:min-h-[630px] flex flex-col justify-between py-5 md:py-6 overflow-hidden bg-brand-primary">
+        {/* Slowly zooming placeholder */}
         <motion.div
-          initial={{ scale: 1.08, opacity: 0.45 }}
-          animate={{ scale: 1, opacity: 0.6 }}
-          transition={{ duration: 6, ease: "easeOut" }}
+          initial={{ scale: 1.08, opacity: 0.85 }}
+          animate={{
+            scale: 1,
+            opacity: videoLoaded ? 0 : 0.85
+          }}
+          transition={{
+            scale: { duration: 8, ease: "easeOut" },
+            opacity: { duration: 1.5, ease: "easeOut" }
+          }}
           className="absolute inset-0 bg-cover bg-center z-0"
-          style={{ 
-            backgroundImage: 'url("https://images.unsplash.com/photo-1540962351504-03099e0a754b?q=80&w=1600&auto=format&fit=crop")'
+          style={{
+            backgroundImage: 'url("/videos/flight-deals-poster.jpg")'
           }}
         />
+
+        {/* Premium cinematic background video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          poster="/videos/flight-deals-poster.jpg"
+          onPlay={() => setVideoLoaded(true)}
+          onLoadedData={() => setVideoLoaded(true)}
+          className={`absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-[1500ms] ease-out ${
+            videoLoaded ? 'opacity-75' : 'opacity-0'
+          }`}
+        >
+          <source
+            src="/videos/flight-deals-travel.mp4"
+            type="video/mp4"
+          />
+        </video>
+
+        {/* Refined gradient overlay */}
         <div 
           className="absolute inset-0 z-1" 
           style={{
-            background: 'linear-gradient(to bottom, rgba(7, 14, 27, 0.25) 0%, rgba(7, 14, 27, 0.4) 50%, rgba(7, 14, 27, 0.75) 100%)'
+            background: 'linear-gradient(to bottom, rgba(7, 14, 27, 0.35) 0%, rgba(7, 14, 27, 0.45) 50%, rgba(7, 14, 27, 0.8) 100%)'
           }}
         />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.18),transparent_60%)] z-1" />
+
+        {/* Starry/Dot Grid overlay */}
         <div className="absolute inset-0 opacity-5 bg-[radial-gradient(circle,#ffffff_1px,transparent_1.5px)] bg-[size:24px_24px] pointer-events-none z-1" />
 
         {/* Top spacer to balance the navigation header bar spacing */}
         <div className="h-2" />
 
         {/* Center Heading Title */}
-        <div className="premium-container relative z-10 flex flex-col items-center flex-1 justify-center py-4">
+        <div className="premium-container relative z-10 flex flex-col items-center flex-1 justify-center pb-20 pt-4">
           <motion.span 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-xs font-extrabold text-brand-orange uppercase tracking-widest inline-block mb-2"
+            className="text-xs font-extrabold text-brand-orange uppercase tracking-widest inline-block mb-3"
             style={{ textShadow: '0 1px 2px rgba(7, 14, 27, 0.4)' }}
           >
             Premium Cabin Upgrades
           </motion.span>
           <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-display italic font-black text-white leading-tight tracking-tight text-center"
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="text-4xl sm:text-5xl md:text-6xl font-display italic font-semibold text-white leading-[1.08] tracking-tight max-w-4xl text-center"
             style={{ textShadow: '0 4px 30px rgba(7, 14, 27, 0.95), 0 2px 8px rgba(7, 14, 27, 0.7)' }}
           >
             Business & First Class
           </motion.h1>
         </div>
+      </section>
 
-        {/* Bottom Booking Wizard Form */}
-        <div className="premium-container relative z-20 w-full mb-1 sm:mb-2 mt-auto">
+      {/* Flight Search Wizard — hangs over the hero's bottom edge, fully visible */}
+      <div className="relative z-30 -mt-28 md:-mt-32 mb-6">
+        <div className="premium-container px-4">
           <FlightSearchForm restrictToBusinessFirst={true} />
         </div>
-      </section>
+      </div>
 
       {/* Main Content */}
       <main className="flex-1 pb-20 relative">

@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { Ticket, Sparkles } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 interface Airline {
   name: string;
@@ -50,15 +49,9 @@ export default function AirlinePartners() {
         {/* Interactive Airline Cards Directory Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
           {airlines.map((a, idx) => (
-            <motion.div
+            <div
               key={idx}
-              whileHover={{
-                y: -5,
-                borderColor: a.color,
-                boxShadow: `0 12px 25px rgba(7, 14, 27, 0.05), 0 0 15px ${a.glow}`
-              }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className="flex flex-col justify-between p-5 rounded-2xl bg-white dark:bg-brand-primary-light border border-brand-border dark:border-gray-800 shadow-sm relative overflow-hidden group cursor-default min-h-[160px]"
+              className="flex flex-col justify-between p-5 rounded-2xl bg-white dark:bg-brand-primary-light border border-brand-border dark:border-gray-800 shadow-sm relative overflow-hidden group cursor-default min-h-[160px] transition-all duration-350 hover:-translate-y-1.5 hover:shadow-md"
             >
               {/* Glowing dynamic background airline code watermark */}
               <div className="absolute right-4 bottom-[-15px] text-[72px] font-display font-semibold text-brand-primary/[0.02] dark:text-white/[0.01] select-none pointer-events-none transition-all duration-300 group-hover:scale-110 group-hover:text-brand-primary/[0.04] dark:group-hover:text-white/[0.02]">
@@ -98,7 +91,7 @@ export default function AirlinePartners() {
                 <Ticket size={13} className="shrink-0" />
                 <span>{a.deal}</span>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 

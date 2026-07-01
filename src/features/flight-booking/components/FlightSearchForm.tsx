@@ -461,9 +461,12 @@ export default function FlightSearchForm({ restrictToBusinessFirst = false }: Fl
           {/* Search Button */}
           <button
             type="submit"
-            className="py-2.5 px-7 rounded-xl bg-brand-orange hover:bg-brand-orange-hover text-white text-sm font-bold tracking-wide flex items-center justify-center gap-2 shadow-[0_3px_14px_rgba(255,92,0,0.35),0_1px_3px_rgba(0,0,0,0.12)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(255,92,0,0.45)] active:translate-y-0 cursor-pointer sm:min-w-[170px]"
+            className="relative overflow-hidden group py-2.5 px-7 rounded-xl bg-brand-orange hover:bg-brand-orange-hover text-white text-sm font-bold tracking-wide flex items-center justify-center gap-2 shadow-[0_3px_14px_rgba(255,92,0,0.35),0_1px_3px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(255,92,0,0.45)] active:translate-y-0 cursor-pointer sm:min-w-[170px]"
           >
-            <Search size={14} /> Search Flights
+            <Search size={14} className="transition-transform duration-300 group-hover:scale-110 shrink-0" />
+            <span>Search Flights</span>
+            {/* Elegant shimmer reflection sweep */}
+            <div className="absolute top-0 -left-[100%] w-1/3 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg] transition-all duration-[1000ms] group-hover:left-[100%] pointer-events-none z-10" />
           </button>
         </div>
 

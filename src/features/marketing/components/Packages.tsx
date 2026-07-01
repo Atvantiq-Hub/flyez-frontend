@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { Plane, ArrowRight } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 interface City {
   name: string;
@@ -30,23 +29,26 @@ export default function Packages() {
       ar1: cityName.toUpperCase().substring(0, 3), // Stylized code
       adult: '1',
       children: '0',
-      infant: '0'
+      infant: '0',
+      dDate: new Date().toISOString().split('T')[0]
     });
-    window.location.href = `https://flyez.ai/flight-listing?${params.toString()}`;
+    window.location.href = `/flights?${params.toString()}`;
   };
 
   return (
-    <section className="py-24 bg-brand-bg-light dark:bg-brand-primary border-t border-b border-brand-border dark:border-gray-800">
+    <section className="py-24 bg-white dark:bg-brand-primary border-b border-brand-border dark:border-gray-800">
       <div className="premium-container">
         
-        {/* Title */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-display font-semibold text-brand-primary dark:text-white">
-            Popular Holiday Packages
-          </h2>
-          <p className="text-brand-text-muted dark:text-gray-400 text-base max-w-xl mx-auto mt-2">
-            Explore exclusive flight options and consolidator rates to our most requested cities.
-          </p>
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+          <div>
+            <h2 className="text-4xl font-display font-semibold text-brand-primary dark:text-white mb-3">
+              Popular Routes
+            </h2>
+            <p className="text-brand-text-muted dark:text-gray-400 text-base max-w-xl">
+              Consolidated airfares on top high-traffic connection lines. Access offline seat availability instantly.
+            </p>
+          </div>
         </div>
 
         {/* Bento Grid Layout */}
@@ -56,15 +58,10 @@ export default function Packages() {
             const isSpanned = idx === 1 || idx === 3;
             
             return (
-              <motion.div
+              <div
                 key={idx}
                 onClick={() => handleCityClick(city.name)}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                whileHover={{ y: -8 }}
-                className={`relative flex flex-col justify-between overflow-hidden rounded-2xl min-h-[280px] shadow-sm hover:shadow-xl border border-brand-border dark:border-gray-800 hover:border-brand-orange/30 dark:hover:border-brand-orange/40 bg-white dark:bg-brand-primary-light cursor-pointer group transition-all duration-300 ${
+                className={`relative flex flex-col justify-between overflow-hidden rounded-2xl min-h-[280px] shadow-sm hover:shadow-xl border border-brand-border dark:border-gray-800 hover:border-brand-orange/30 dark:hover:border-brand-orange/40 bg-white dark:bg-brand-primary-light cursor-pointer group transition-all duration-300 hover:-translate-y-2 hover:shadow-lg ${
                   isSpanned ? 'lg:col-span-2' : 'lg:col-span-1'
                 }`}
               >
@@ -126,7 +123,7 @@ export default function Packages() {
                 {/* Shimmer Overlay effect */}
                 <div className="absolute top-0 -left-[150%] w-1/2 h-full bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-25deg] transition-all duration-[750ms] group-hover:left-[150%] pointer-events-none z-10" />
 
-              </motion.div>
+              </div>
             );
           })}
         </div>

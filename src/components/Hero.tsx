@@ -1,26 +1,17 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 
 export default function Hero() {
   const [videoLoaded, setVideoLoaded] = useState(false);
 
   return (
     <section className="relative min-h-[530px] md:min-h-[590px] lg:min-h-[630px] flex flex-col justify-between py-5 md:py-6 overflow-hidden bg-brand-primary">
-      {/* Slowly zooming placeholder — the video's own first frame, so there is
-          no mismatched image flash before playback begins */}
-      <motion.div
-        initial={{ scale: 1.08, opacity: 0.85 }}
-        animate={{
-          scale: 1,
-          opacity: videoLoaded ? 0 : 0.85
-        }}
-        transition={{
-          scale: { duration: 8, ease: "easeOut" },
-          opacity: { duration: 1.5, ease: "easeOut" }
-        }}
-        className="absolute inset-0 bg-cover bg-center z-0"
+      {/* Zooming placeholder frame to prevent empty white flash before video plays */}
+      <div
+        className={`absolute inset-0 bg-cover bg-center z-0 transition-all duration-[4000ms] ease-out ${
+          videoLoaded ? 'scale-100 opacity-0' : 'scale-105 opacity-85'
+        }`}
         style={{
           backgroundImage: 'url("/videos/flight-deals-poster.png")'
         }}
@@ -46,35 +37,31 @@ export default function Hero() {
         />
       </video>
 
-      {/* Refined gradient overlay for high image visibility and text readability */}
+      {/* Refined gradient overlay for high contrast */}
       <div 
         className="absolute inset-0 z-1" 
         style={{
-          background: 'linear-gradient(to bottom, rgba(7, 14, 27, 0.35) 0%, rgba(7, 14, 27, 0.45) 50%, rgba(7, 14, 27, 0.8) 100%)'
+          background: 'linear-gradient(to bottom, rgba(7, 14, 27, 0.3) 0%, rgba(7, 14, 27, 0.45) 50%, rgba(7, 14, 27, 0.8) 100%)'
         }}
       />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.18),transparent_60%)] z-1" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,92,0,0.1),transparent_60%)] z-1" />
 
-      {/* Starry/Dot Grid overlay */}
+      {/* Starry dot grid overlay */}
       <div className="absolute inset-0 opacity-5 bg-[radial-gradient(circle,#ffffff_1px,transparent_1.5px)] bg-[size:24px_24px] pointer-events-none z-1" />
 
-      {/* Top spacer to balance the navigation header bar spacing */}
+      {/* Spacer */}
       <div className="h-2" />
 
       {/* Center Heading Title */}
       <div className="premium-container relative z-10 flex flex-col items-center flex-1 justify-center pb-20 pt-4">
-        {/* Title Heading */}
-        <motion.h1
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
+        <h1
           className="text-4xl sm:text-5xl md:text-6xl font-display italic font-semibold text-white leading-[1.08] tracking-tight max-w-4xl text-center"
           style={{
             textShadow: '0 4px 30px rgba(7, 14, 27, 0.95), 0 2px 8px rgba(7, 14, 27, 0.7)'
           }}
         >
           Unbeatable Flight Deals
-        </motion.h1>
+        </h1>
       </div>
     </section>
   );

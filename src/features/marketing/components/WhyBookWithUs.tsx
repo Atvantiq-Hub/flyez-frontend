@@ -1,129 +1,141 @@
 'use client';
 
 import React from 'react';
-import { DollarSign, Zap, ShieldCheck, CheckCircle, Award } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Check } from 'lucide-react';
 
 interface Benefit {
   number: string;
+  label: string;
   title: string;
   desc: string;
-  icon: React.ReactNode;
-  color: string;
-  bg: string;
-  glow: string;
 }
 
 export default function WhyBookWithUs() {
   const benefits: Benefit[] = [
     {
       number: "01",
+      label: "WHOLESALE ACQUISITION",
       title: "Consolidated Wholesale Rates",
-      desc: "We bypass standard retail markups by securing contract rates directly from global airline consolidators, matching or beating any online offer.",
-      icon: <DollarSign size={24} />,
-      color: "#2563eb", // Brand Accent Blue
-      bg: "bg-blue-50 dark:bg-blue-500/10 text-brand-accent",
-      glow: "rgba(37, 99, 235, 0.15)"
+      desc: "We bypass standard retail markups by securing contract rates directly from global airline consolidator desks, matching or beating any online offer."
     },
     {
       number: "02",
+      label: "PRIORITY PROCESSING",
       title: "Frictionless Priority Booking",
-      desc: "Configure your routing parameters online or call our desk; our priority booking system completes ticket reservations and seat allocations in seconds.",
-      icon: <Zap size={24} />,
-      color: "#ff5c00", // Brand Orange
-      bg: "bg-orange-50 dark:bg-orange-500/10 text-brand-orange",
-      glow: "rgba(255, 92, 0, 0.15)"
+      desc: "Configure your routing parameters online or call our desk; our priority booking system completes ticket reservations and seat allocations in seconds."
     },
     {
       number: "03",
+      label: "CONCIERGE MANAGEMENT",
       title: "Elite Concierge Support",
-      desc: "Access a dedicated 24/7 ticketing desk staffed by human flight experts to handle real-time modifications, cancellations, and premium seat setups.",
-      icon: <ShieldCheck size={24} />,
-      color: "#10b981", // Brand Success Green
-      bg: "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
-      glow: "rgba(16, 185, 129, 0.15)"
+      desc: "Access a dedicated 24/7 ticketing desk staffed by human flight experts to handle real-time modifications, cancellations, and premium seat setups."
     }
   ];
 
   return (
-    <section className="py-24 bg-brand-bg-light dark:bg-brand-primary border-t border-b border-brand-border dark:border-gray-800 relative overflow-hidden">
-      
-      {/* Decorative subtle vector background mesh */}
-      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] bg-[radial-gradient(circle,var(--color-brand-primary)_1px,transparent_1.5px)] bg-[size:32px_32px] pointer-events-none" />
-      <div className="absolute top-1/2 left-[-10%] w-[300px] h-[300px] rounded-full bg-brand-accent/5 blur-3xl pointer-events-none" />
-
+    <section className="py-20 lg:py-24 bg-[#fafaf9] border-t border-b border-stone-200/50 relative overflow-hidden font-sans">
       <div className="premium-container relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          {/* Left Column: Rich Editorial Value Pitch */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
-            <div>
-              <span className="text-xs font-extrabold text-brand-orange uppercase tracking-widest inline-flex items-center gap-2 mb-3">
-                <Award size={14} /> Unrivaled Service
-              </span>
-              <h2 className="text-4xl lg:text-5xl font-display font-semibold text-brand-primary dark:text-white leading-[1.1] tracking-tight mb-4">
-                Smart Flight <br/>Desk Solutions
-              </h2>
-              <p className="text-brand-text-muted dark:text-gray-400 text-base leading-relaxed">
-                FlyEz combines direct GDS airline contracts, wholesale consolidator connections, and 24/7 human expertise to offer flight bookings at rates simply unavailable to the general public.
-              </p>
+          {/* Left Column: Premium Staggered Fan Deck */}
+          <div className="lg:col-span-5 w-full flex items-center justify-center h-[440px] md:h-[480px] relative select-none">
+            
+            {/* Left Card - Wings / Sky */}
+            <div className="w-[30%] h-[310px] md:h-[340px] rounded-2xl overflow-hidden border-4 border-[#fafaf9] shadow-lg -rotate-6 translate-x-8 mt-8 transition-all duration-500 hover:rotate-0 hover:scale-105 hover:w-[44%] hover:translate-x-4 hover:z-20 hover:shadow-2xl group cursor-pointer shrink-0 hover:ring-4 hover:ring-brand-orange/20">
+              <img
+                src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=400&auto=format&fit=crop"
+                alt="Premium flight wing sunset"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+              />
             </div>
 
-            {/* Micro checklist indicators */}
-            <div className="flex flex-col gap-3 border-t border-brand-border dark:border-gray-800 pt-6">
-              {[
-                "100% Secure PCI-DSS GDS bookings",
-                "Instant PNR ticket confirmations",
-                "Zero hidden ticketing or seat fees"
-              ].map((text, idx) => (
-                <div key={idx} className="flex items-center gap-2.5 text-sm font-bold text-brand-primary dark:text-white">
-                  <CheckCircle size={16} className="text-brand-orange shrink-0" />
-                  <span>{text}</span>
+            {/* Center Card - Luxury Flight Cabin Video */}
+            <div className="w-[46%] h-[350px] md:h-[380px] rounded-3xl overflow-hidden border-4 border-[#fafaf9] shadow-2xl z-10 transition-all duration-500 hover:scale-105 hover:shadow-2xl group cursor-pointer shrink-0 relative hover:ring-4 hover:ring-brand-orange/25">
+              <video
+                src="/videos/flight-deals-travel.mp4"
+                poster="/videos/flight-deals-poster.jpg"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+
+            {/* Right Card - 5-Star VIP Airport Lounge */}
+            <div className="w-[30%] h-[310px] md:h-[340px] rounded-2xl overflow-hidden border-4 border-[#fafaf9] shadow-lg rotate-6 -translate-x-8 mt-8 transition-all duration-500 hover:rotate-0 hover:scale-105 hover:w-[44%] hover:-translate-x-4 hover:z-20 hover:shadow-2xl group cursor-pointer shrink-0 hover:ring-4 hover:ring-brand-orange/20">
+              <img
+                src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=400&auto=format&fit=crop"
+                alt="Luxury VIP transit lounge"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            
+          </div>
+
+          {/* Right Column: Editorial Value Proposition Copy & Stacked Values */}
+          <div className="lg:col-span-7 flex flex-col justify-center gap-5.5">
+            {/* Value Pitch Header */}
+            <div>
+              <span className="text-[10px] font-bold text-brand-orange uppercase tracking-[0.2em] block mb-2 font-ui">
+                THE FLYEZ PROMISE
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-display font-medium text-brand-primary leading-tight tracking-tight mb-2.5">
+                Bespoke Airfare Solutions
+              </h2>
+              <p className="text-brand-text-muted text-xs sm:text-sm leading-relaxed">
+                FlyEz combines direct GDS airline contracts, wholesale consolidator connections, and 24/7 human expertise to offer flight bookings at rates simply unavailable to the general public.
+              </p>
+
+              {/* Minimal inline bullet list */}
+              <div className="flex flex-wrap gap-x-5 gap-y-1.5 mt-3.5">
+                {[
+                  "PCI-DSS Secure Desk",
+                  "Instant PNR Confirmations",
+                  "Zero Ticketing Surcharges"
+                ].map((text, idx) => (
+                  <div key={idx} className="flex items-center gap-1.5 text-[11px] font-bold text-brand-primary font-ui uppercase tracking-wider">
+                    <Check size={12} className="text-brand-orange shrink-0" strokeWidth={3} />
+                    <span className="text-slate-700">{text}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Premium Vertical List */}
+            <div className="flex flex-col divide-y divide-stone-200/50 pt-1.5 border-t border-stone-200/40">
+              {benefits.map((b, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-start gap-4 py-3.5 first:pt-0 last:pb-0 group"
+                >
+                  {/* Large elegant serif index indicator */}
+                  <span className="font-display italic text-xl md:text-2xl text-brand-orange/60 font-medium shrink-0 select-none w-8 md:w-10 pt-0.5">
+                    {b.number}
+                  </span>
+
+                  {/* Content Area */}
+                  <div className="flex-1">
+                    {/* Category Details */}
+                    <span className="text-[8px] font-extrabold text-slate-400 font-ui tracking-[0.18em] block mb-0.5">
+                      {b.label}
+                    </span>
+
+                    {/* Headline */}
+                    <h3 className="text-sm md:text-base font-display font-semibold text-brand-primary tracking-tight leading-snug">
+                      {b.title}
+                    </h3>
+
+                    {/* Paragraph copy */}
+                    <p className="text-brand-text-muted text-xs leading-relaxed mt-0.5">
+                      {b.desc}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* Right Column: Premium Staggered Benefits Panel */}
-          <div className="lg:col-span-7 flex flex-col gap-5">
-            {benefits.map((b, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                whileHover={{ 
-                  x: 8, 
-                  borderColor: b.color,
-                  boxShadow: `0 12px 30px rgba(7, 14, 27, 0.04), 0 0 15px ${b.glow}` 
-                }}
-                className="relative flex items-start gap-6 p-6 rounded-2xl bg-white dark:bg-brand-primary-light border border-brand-border dark:border-gray-800/80 shadow-sm transition-all duration-300 group cursor-pointer overflow-hidden"
-              >
-                {/* Dynamic Brand Color Top-Left corner accent */}
-                <div className="absolute top-0 left-0 w-1 h-full transition-transform duration-300 group-hover:scale-y-110" style={{ backgroundColor: b.color }} />
-
-                {/* Animated Background Number Watermark */}
-                <div className="absolute right-6 bottom-[-15px] text-[72px] font-display font-semibold text-brand-primary/[0.02] dark:text-white/[0.01] select-none pointer-events-none transition-all duration-500 group-hover:scale-108 group-hover:text-brand-primary/[0.04] dark:group-hover:text-white/[0.02]">
-                  {b.number}
-                </div>
-
-                {/* Icon Capsule with ambient background glow */}
-                <div className={`p-4 rounded-xl shrink-0 transition-transform duration-300 group-hover:scale-105 group-hover:rotate-[6deg] ${b.bg}`}>
-                  {b.icon}
-                </div>
-
-                {/* Content */}
-                <div className="flex-1 pr-6 z-10">
-                  <h4 className="text-lg font-display font-semibold text-brand-primary dark:text-white mb-2 leading-none">
-                    {b.title}
-                  </h4>
-                  <p className="text-brand-text-muted dark:text-gray-400 text-xs md:text-sm leading-relaxed">
-                    {b.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
           </div>
 
         </div>

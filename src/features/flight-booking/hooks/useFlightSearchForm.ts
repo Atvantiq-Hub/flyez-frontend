@@ -86,8 +86,8 @@ export function useFlightSearchForm() {
       });
     }
 
-    // Redirect to backend flight list with params
-    window.location.href = `https://flyez.ai/flights?${params.toString()}`;
+    // Redirect to local flight list with params
+    window.location.href = `/flights?${params.toString()}`;
   };
 
   const handleSwap = () => {

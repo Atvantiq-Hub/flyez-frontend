@@ -34,11 +34,11 @@ export default function Header({ overlay = true }: HeaderProps) {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
-    { name: "Business/First Class", href: "/business-first-class" },
-    { name: "News & Insights", href: "/news-insights" },
+    { name: "Business / First", href: "/business-first-class" },
+    { name: "News", href: "/news-insights" },
     { name: "Events", href: "/events" },
     { name: "Testimonials", href: "/testimonials" },
-    { name: "Talk to Us", href: "/contact" }
+    { name: "Contact", href: "/contact" }
   ];
 
   return (
@@ -70,21 +70,21 @@ export default function Header({ overlay = true }: HeaderProps) {
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center font-ui">
-          <ul className="flex gap-7 xl:gap-9 text-[15px] xl:text-[16px]">
+          <ul className="flex gap-4 xl:gap-6 text-xs">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
                 <li key={link.name} className="flex items-center">
                   <a
                     href={link.href}
-                    className={`relative py-2 tracking-[0.01em] transition-colors duration-300 ${
+                    className={`relative py-2 text-[11px] font-bold uppercase tracking-wider whitespace-nowrap transition-colors duration-300 ${
                       transparent
                         ? isActive
-                          ? 'text-white font-semibold hover:text-brand-orange'
-                          : 'text-white font-medium hover:text-brand-orange'
+                          ? 'text-white hover:text-brand-orange'
+                          : 'text-white/80 hover:text-white'
                         : isActive
-                          ? 'text-brand-primary font-semibold hover:text-brand-orange'
-                          : 'text-brand-primary/70 font-medium hover:text-brand-orange'
+                          ? 'text-brand-primary hover:text-brand-orange'
+                          : 'text-brand-primary/70 hover:text-brand-primary'
                     }`}
                   >
                     {link.name}
