@@ -33,70 +33,96 @@ export default function WhyBookWithUs() {
   ];
 
   return (
-    <section className="py-24 bg-[#fafaf9] border-t border-b border-stone-200/50 relative overflow-hidden font-sans">
+    <section className="py-28 lg:py-32 bg-[#fafaf9] border-t border-b border-stone-200/50 relative overflow-hidden font-sans">
       <div className="premium-container relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
           
-          {/* Left Column: Rich Editorial Value Pitch */}
-          <div className="lg:col-span-5 flex flex-col gap-8 lg:pr-12 lg:border-r lg:border-stone-200/60">
+          {/* Left Column: Overlapping Luxury Editorial Image Collage */}
+          <div className="lg:col-span-6 relative flex items-center justify-center min-h-[460px] md:min-h-[520px] w-full">
+            {/* Main Tall Image Frame */}
+            <div className="relative w-full max-w-[420px] h-[460px] md:h-[500px] rounded-3xl overflow-hidden shadow-[0_15px_45px_rgba(7,14,27,0.12)] border border-stone-200/60 z-10 transition-all duration-300 hover:scale-[1.01]">
+              <img
+                src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?q=80&w=800&auto=format&fit=crop"
+                alt="Luxury aircraft passenger suite view"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+              {/* Soft overlay vignette */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
+            </div>
+
+            {/* Overlapping Detail Image Card (Floating at the bottom right) */}
+            <div className="absolute -bottom-6 right-0 md:right-4 w-[200px] md:w-[240px] h-[150px] md:h-[180px] rounded-2xl overflow-hidden border-[6px] border-[#fafaf9] shadow-[0_20px_50px_rgba(7,14,27,0.22)] z-20 hidden sm:block transition-all duration-300 hover:scale-[1.03]">
+              <img
+                src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=500&auto=format&fit=crop"
+                alt="Premium airport lounge detail"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          {/* Right Column: Editorial Value Proposition copy & Stacked values */}
+          <div className="lg:col-span-6 flex flex-col justify-center gap-10">
+            {/* Value Pitch Header */}
             <div>
               <span className="text-[10px] font-bold text-brand-orange uppercase tracking-[0.25em] block mb-3 font-ui">
                 THE FLYEZ PROMISE
               </span>
-              <h2 className="text-4xl lg:text-5xl font-display font-medium text-brand-primary leading-[1.12] tracking-tight mb-4">
-                Smart Flight <br/>Desk Solutions
+              <h2 className="text-3xl sm:text-4xl font-display font-medium text-brand-primary leading-[1.15] tracking-tight mb-5">
+                Bespoke Airfare Solutions
               </h2>
-              <p className="text-brand-text-muted text-sm md:text-base leading-relaxed mt-3">
+              <p className="text-brand-text-muted text-sm md:text-base leading-relaxed">
                 FlyEz combines direct GDS airline contracts, wholesale consolidator connections, and 24/7 human expertise to offer flight bookings at rates simply unavailable to the general public.
               </p>
+
+              {/* Minimal inline bullet list under paragraph */}
+              <div className="flex flex-wrap gap-x-6 gap-y-2 mt-6">
+                {[
+                  "PCI-DSS Secure",
+                  "Instant PNR Check",
+                  "Zero Ticketing Fees"
+                ].map((text, idx) => (
+                  <div key={idx} className="flex items-center gap-1.5 text-xs font-bold text-brand-primary font-ui uppercase tracking-wider">
+                    <Check size={13} className="text-brand-orange shrink-0" strokeWidth={3} />
+                    <span className="text-slate-700">{text}</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* Micro checklist indicators */}
-            <div className="flex flex-col gap-4 border-t border-stone-200/55 pt-8">
-              {[
-                "100% Secure PCI-DSS GDS bookings",
-                "Instant PNR ticket confirmations",
-                "Zero hidden ticketing or seat fees"
-              ].map((text, idx) => (
-                <div key={idx} className="flex items-center gap-3 text-xs sm:text-sm font-bold text-brand-primary">
-                  <Check size={14} className="text-brand-orange shrink-0 mt-0.5" strokeWidth={3} />
-                  <span className="font-ui font-semibold text-slate-700 tracking-wide">{text}</span>
+            {/* Premium Dividerless/Subtle divider List */}
+            <div className="flex flex-col divide-y divide-stone-200/50 pt-2 border-t border-stone-200/40">
+              {benefits.map((b, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-start gap-5 py-6.5 first:pt-0 last:pb-0 group"
+                >
+                  {/* Large elegant serif index indicator */}
+                  <span className="font-display italic text-2xl md:text-3xl text-brand-orange/60 font-medium shrink-0 select-none w-10 md:w-12 pt-0.5">
+                    {b.number}
+                  </span>
+
+                  {/* Content Area */}
+                  <div className="flex-1">
+                    {/* Category Details */}
+                    <span className="text-[9px] font-extrabold text-slate-400 font-ui tracking-[0.18em] block mb-1">
+                      {b.label}
+                    </span>
+
+                    {/* Headline */}
+                    <h3 className="text-base md:text-lg font-display font-semibold text-brand-primary tracking-tight leading-snug">
+                      {b.title}
+                    </h3>
+
+                    {/* Paragraph copy */}
+                    <p className="text-brand-text-muted text-xs md:text-sm leading-relaxed mt-1.5">
+                      {b.desc}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* Right Column: Premium Borderless Vertical List */}
-          <div className="lg:col-span-7 flex flex-col divide-y divide-stone-200/50">
-            {benefits.map((b, idx) => (
-              <div
-                key={idx}
-                className="flex items-start gap-6 py-8 first:pt-0 last:pb-0 group"
-              >
-                {/* Large elegant serif index indicator */}
-                <span className="font-display italic text-2xl md:text-3xl text-brand-orange/60 font-medium shrink-0 select-none w-10 md:w-12 pt-0.5">
-                  {b.number}
-                </span>
-
-                {/* Content Area */}
-                <div className="flex-1">
-                  {/* Category Details */}
-                  <span className="text-[9px] font-extrabold text-slate-400 font-ui tracking-[0.18em] block mb-1">
-                    {b.label}
-                  </span>
-
-                  {/* Headline */}
-                  <h3 className="text-lg md:text-xl font-display font-semibold text-brand-primary tracking-tight leading-snug">
-                    {b.title}
-                  </h3>
-
-                  {/* Paragraph copy */}
-                  <p className="text-brand-text-muted text-xs md:text-sm leading-relaxed mt-2 max-w-xl">
-                    {b.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
           </div>
 
         </div>
