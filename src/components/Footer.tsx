@@ -8,12 +8,30 @@ export default function Footer() {
     <footer 
       className="bg-[#03070f] text-white pt-24 pb-12 relative overflow-hidden border-t border-white/[0.03]"
     >
+      {/* Keyframe stylesheet for luxury ambient animations */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes ambient-float-1 {
+          0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+          50% { transform: translate(15px, -15px) scale(1.06); opacity: 0.45; }
+        }
+        @keyframes ambient-float-2 {
+          0%, 100% { transform: translate(0, 0) scale(1.04); opacity: 0.4; }
+          50% { transform: translate(-20px, 10px) scale(0.96); opacity: 0.2; }
+        }
+        .animate-float-slow-1 {
+          animation: ambient-float-1 12s ease-in-out infinite;
+        }
+        .animate-float-slow-2 {
+          animation: ambient-float-2 15s ease-in-out infinite;
+        }
+      `}} />
+
       {/* Golden thread line at the top border */}
       <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-brand-orange/50 to-transparent opacity-60" />
 
       {/* Ambient background glows */}
-      <div className="absolute top-0 right-[15%] w-[400px] h-[400px] rounded-full bg-radial from-brand-orange/4 to-transparent pointer-events-none blur-3xl" />
-      <div className="absolute bottom-[-10%] left-[10%] w-[500px] h-[500px] rounded-full bg-radial from-brand-accent/5 to-transparent pointer-events-none blur-3xl" />
+      <div className="absolute top-0 right-[15%] w-[400px] h-[400px] rounded-full bg-radial from-brand-orange/4 to-transparent pointer-events-none blur-3xl animate-float-slow-1" />
+      <div className="absolute bottom-[-10%] left-[10%] w-[500px] h-[500px] rounded-full bg-radial from-brand-accent/5 to-transparent pointer-events-none blur-3xl animate-float-slow-2" />
 
       <div className="premium-container relative z-10">
         
@@ -38,7 +56,7 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row gap-4 shrink-0">
             <a 
               href="tel:1800-521-4263"
-              className="flex items-center justify-center gap-2.5 border border-white/10 hover:border-brand-orange/40 bg-white/[0.02] hover:bg-white/[0.04] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300"
+              className="flex items-center justify-center gap-2.5 border border-white/10 hover:border-brand-orange/45 bg-white/[0.02] hover:bg-white/[0.05] hover:shadow-[0_0_15px_rgba(255,92,0,0.05)] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300"
             >
               <Phone size={13} className="text-brand-orange" />
               <span>1800-521-4263</span>
@@ -65,9 +83,9 @@ export default function Footer() {
                 <li key={idx}>
                   <a 
                     href={link.href}
-                    className="group flex items-center gap-1 hover:text-brand-orange transition-all duration-300 hover:translate-x-1"
+                    className="group flex items-center gap-1.5 hover:text-brand-orange transition-all duration-300 hover:translate-x-1"
                   >
-                    <ArrowRight size={10} className="opacity-0 group-hover:opacity-100 text-brand-orange transition-opacity duration-300 shrink-0" />
+                    <ArrowRight size={10} className="opacity-0 w-0 group-hover:w-2.5 group-hover:opacity-100 text-brand-orange transition-all duration-300 shrink-0" />
                     <span>{link.name}</span>
                   </a>
                 </li>
@@ -90,9 +108,9 @@ export default function Footer() {
                 <li key={idx}>
                   <a 
                     href={link.href}
-                    className="group flex items-center gap-1 hover:text-brand-orange transition-all duration-300 hover:translate-x-1"
+                    className="group flex items-center gap-1.5 hover:text-brand-orange transition-all duration-300 hover:translate-x-1"
                   >
-                    <ArrowRight size={10} className="opacity-0 group-hover:opacity-100 text-brand-orange transition-opacity duration-300 shrink-0" />
+                    <ArrowRight size={10} className="opacity-0 w-0 group-hover:w-2.5 group-hover:opacity-100 text-brand-orange transition-all duration-300 shrink-0" />
                     <span>{link.name}</span>
                   </a>
                 </li>
@@ -131,7 +149,7 @@ export default function Footer() {
             
             <form 
               onSubmit={(e) => e.preventDefault()} 
-              className="flex bg-white/[0.03] border border-white/10 rounded-xl p-1 w-full transition-all duration-300 focus-within:border-brand-orange/40 focus-within:bg-white/[0.05] focus-within:shadow-[0_0_20px_rgba(255,92,0,0.1)] mb-5"
+              className="flex bg-white/[0.03] border border-white/10 rounded-xl p-1 w-full transition-all duration-300 focus-within:border-brand-orange/40 focus-within:bg-white/[0.05] focus-within:shadow-[0_0_20px_rgba(255,92,0,0.1)] mb-5 group"
             >
               <input 
                 type="email" 
@@ -140,15 +158,15 @@ export default function Footer() {
               />
               <button 
                 type="submit" 
-                className="bg-brand-orange hover:bg-brand-orange-hover text-white rounded-lg w-8 h-8 flex items-center justify-center transition-all duration-300 shrink-0"
+                className="bg-brand-orange hover:bg-brand-orange-hover text-white rounded-lg w-8 h-8 flex items-center justify-center transition-all duration-300 shrink-0 group"
               >
-                <Send size={12} className="text-white" />
+                <Send size={12} className="text-white transition-transform duration-350 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </button>
             </form>
 
             {/* App Store Buttons */}
             <div className="flex gap-2">
-              <a href="#" className="flex items-center gap-1.5 px-3 py-1.5 bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 hover:border-white/15 rounded-lg transition-all duration-300 text-left group">
+              <a href="#" className="flex items-center gap-1.5 px-3 py-1.5 bg-white/[0.02] hover:bg-white/[0.06] border border-white/5 hover:border-brand-orange/30 hover:shadow-[0_0_15px_rgba(255,92,0,0.06)] rounded-lg transition-all duration-300 text-left group">
                 <svg className="w-3.5 h-3.5 fill-current text-white/70 group-hover:text-white" viewBox="0 0 24 24">
                   <path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C3.79 16.41 3.52 9.38 8.16 9.12c1.37.07 2.27.79 3.03.8 1.15-.02 2.27-.92 3.82-.77 1.62.15 2.82.78 3.54 1.84-3.3 1.98-2.77 6.17.53 7.5-1.04 2.5-1.97 5.02-1.97 7.79z M12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.2 2.5-2.06 4.38-3.74 4.25z" />
                 </svg>
@@ -157,7 +175,7 @@ export default function Footer() {
                   <div className="text-[9px] font-bold leading-tight mt-0.5">App Store</div>
                 </div>
               </a>
-              <a href="#" className="flex items-center gap-1.5 px-3 py-1.5 bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 hover:border-white/15 rounded-lg transition-all duration-300 text-left group">
+              <a href="#" className="flex items-center gap-1.5 px-3 py-1.5 bg-white/[0.02] hover:bg-white/[0.06] border border-white/5 hover:border-brand-orange/30 hover:shadow-[0_0_15px_rgba(255,92,0,0.06)] rounded-lg transition-all duration-300 text-left group">
                 <svg className="w-3.5 h-3.5 fill-current text-white/70 group-hover:text-white" viewBox="0 0 24 24">
                   <path d="M3 2.5a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h.07l11.05-11.05L3.07 2.5H3zm12.46 9.5L4.41 21.05a2 2 0 0 0 1.29-.05l10.9-6.3-1.14-1.7zm0-2L5.7 3.7A2 2 0 0 0 4.41 2.95l11.05 9.05zM22.56 11l-3.04-1.75-2.06 3.1 2.06 3.1 3.04-1.75a1.15 1.15 0 0 0 0-1.7z" />
                 </svg>
@@ -182,41 +200,41 @@ export default function Footer() {
             <div>
               <h5 className="text-stone-300 text-xs font-bold mb-4 font-display uppercase tracking-wider text-brand-orange font-ui">Flights to US Cities</h5>
               <ul className="flex flex-col gap-2.5 text-xs text-white/40 font-sans">
-                <li><a href="/flights?tp=round&couch=E&d1=LAX&ar1=JFK" className="hover:text-brand-orange transition-colors">New York (JFK)</a></li>
-                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=LAX" className="hover:text-brand-orange transition-colors">Los Angeles (LAX)</a></li>
-                <li><a href="/flights?tp=round&couch=E&d1=LAX&ar1=LAS" className="hover:text-brand-orange transition-colors">Las Vegas (LAS)</a></li>
-                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=MIA" className="hover:text-brand-orange transition-colors">Miami (MIA)</a></li>
-                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=MCO" className="hover:text-brand-orange transition-colors">Orlando (MCO)</a></li>
-                <li><a href="/flights?tp=round&couch=E&d1=ORD&ar1=DFW" className="hover:text-brand-orange transition-colors">Dallas (DFW)</a></li>
+                <li><a href="/flights?tp=round&couch=E&d1=LAX&ar1=JFK" className="hover:text-brand-orange hover:translate-x-1 transition-all duration-300 block">New York (JFK)</a></li>
+                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=LAX" className="hover:text-brand-orange hover:translate-x-1 transition-all duration-300 block">Los Angeles (LAX)</a></li>
+                <li><a href="/flights?tp=round&couch=E&d1=LAX&ar1=LAS" className="hover:text-brand-orange hover:translate-x-1 transition-all duration-300 block">Las Vegas (LAS)</a></li>
+                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=MIA" className="hover:text-brand-orange hover:translate-x-1 transition-all duration-300 block">Miami (MIA)</a></li>
+                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=MCO" className="hover:text-brand-orange hover:translate-x-1 transition-all duration-300 block">Orlando (MCO)</a></li>
+                <li><a href="/flights?tp=round&couch=E&d1=ORD&ar1=DFW" className="hover:text-brand-orange hover:translate-x-1 transition-all duration-300 block">Dallas (DFW)</a></li>
               </ul>
             </div>
             <div>
               <h5 className="text-stone-300 text-xs font-bold mb-4 font-display uppercase tracking-wider text-brand-orange font-ui">Flights to Intl Cities</h5>
               <ul className="flex flex-col gap-2.5 text-xs text-white/40 font-sans">
-                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=LHR" className="hover:text-brand-orange transition-colors">London (LHR)</a></li>
-                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=CDG" className="hover:text-brand-orange transition-colors">Paris (CDG)</a></li>
-                <li><a href="/flights?tp=round&couch=E&d1=LAX&ar1=NRT" className="hover:text-brand-orange transition-colors">Tokyo (NRT)</a></li>
-                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=FCO" className="hover:text-brand-orange transition-colors">Rome (FCO)</a></li>
-                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=CUN" className="hover:text-brand-orange transition-colors">Cancun (CUN)</a></li>
-                <li><a href="/flights?tp=round&couch=E&d1=LAX&ar1=SYD" className="hover:text-brand-orange transition-colors">Sydney (SYD)</a></li>
+                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=LHR" className="hover:text-brand-orange hover:translate-x-1 transition-all duration-300 block">London (LHR)</a></li>
+                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=CDG" className="hover:text-brand-orange hover:translate-x-1 transition-all duration-300 block">Paris (CDG)</a></li>
+                <li><a href="/flights?tp=round&couch=E&d1=LAX&ar1=NRT" className="hover:text-brand-orange hover:translate-x-1 transition-all duration-300 block">Tokyo (NRT)</a></li>
+                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=FCO" className="hover:text-brand-orange hover:translate-x-1 transition-all duration-300 block">Rome (FCO)</a></li>
+                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=CUN" className="hover:text-brand-orange hover:translate-x-1 transition-all duration-300 block">Cancun (CUN)</a></li>
+                <li><a href="/flights?tp=round&couch=E&d1=LAX&ar1=SYD" className="hover:text-brand-orange hover:translate-x-1 transition-all duration-300 block">Sydney (SYD)</a></li>
               </ul>
             </div>
             <div>
               <h5 className="text-stone-300 text-xs font-bold mb-4 font-display uppercase tracking-wider text-brand-orange font-ui">Domestic Airlines</h5>
               <ul className="flex flex-col gap-2.5 text-xs text-white/40 font-sans">
-                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=LHR&airline=AA" className="hover:text-brand-orange transition-colors">American Airlines</a></li>
-                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=LHR&airline=UA" className="hover:text-brand-orange transition-colors">United Airlines</a></li>
-                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=LHR&airline=DL" className="hover:text-brand-orange transition-colors">Delta Air Lines</a></li>
+                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=LHR&airline=AA" className="hover:text-brand-orange hover:translate-x-1 transition-all duration-300 block">American Airlines</a></li>
+                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=LHR&airline=UA" className="hover:text-brand-orange hover:translate-x-1 transition-all duration-300 block">United Airlines</a></li>
+                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=LHR&airline=DL" className="hover:text-brand-orange hover:translate-x-1 transition-all duration-300 block">Delta Air Lines</a></li>
               </ul>
             </div>
             <div>
               <h5 className="text-stone-300 text-xs font-bold mb-4 font-display uppercase tracking-wider text-brand-orange font-ui">Intl Carriers</h5>
               <ul className="flex flex-col gap-2.5 text-xs text-white/40 font-sans">
-                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=LHR&airline=BA" className="hover:text-brand-orange transition-colors">British Airways</a></li>
-                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=LHR&airline=LH" className="hover:text-brand-orange transition-colors">Lufthansa</a></li>
-                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=LHR&airline=QR" className="hover:text-brand-orange transition-colors">Qatar Airways</a></li>
-                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=LHR&airline=EK" className="hover:text-brand-orange transition-colors">Emirates</a></li>
-                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=LHR&airline=SQ" className="hover:text-brand-orange transition-colors">Singapore Airlines</a></li>
+                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=LHR&airline=BA" className="hover:text-brand-orange hover:translate-x-1 transition-all duration-300 block">British Airways</a></li>
+                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=LHR&airline=LH" className="hover:text-brand-orange hover:translate-x-1 transition-all duration-300 block">Lufthansa</a></li>
+                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=LHR&airline=QR" className="hover:text-brand-orange hover:translate-x-1 transition-all duration-300 block">Qatar Airways</a></li>
+                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=LHR&airline=EK" className="hover:text-brand-orange hover:translate-x-1 transition-all duration-300 block">Emirates</a></li>
+                <li><a href="/flights?tp=round&couch=E&d1=JFK&ar1=LHR&airline=SQ" className="hover:text-brand-orange hover:translate-x-1 transition-all duration-300 block">Singapore Airlines</a></li>
               </ul>
             </div>
           </div>
@@ -249,7 +267,7 @@ export default function Footer() {
               {["VISA", "MASTERCARD", "AMEX", "DISCOVER"].map((badge, index) => (
                 <div 
                   key={index}
-                  className="bg-[#050b16] border border-white/[0.06] text-[8px] font-mono text-white/40 py-1 px-2.5 rounded-md hover:border-brand-orange/40 hover:text-white transition-all duration-300 select-none cursor-default"
+                  className="bg-[#050b16] border border-white/[0.06] hover:border-brand-orange/30 hover:text-brand-orange hover:bg-white/[0.02] text-[8px] font-mono text-white/40 py-1 px-2.5 rounded-md transition-all duration-300 select-none cursor-pointer hover:shadow-[0_0_10px_rgba(255,92,0,0.05)]"
                 >
                   {badge}
                 </div>
